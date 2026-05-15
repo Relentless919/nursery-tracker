@@ -7,76 +7,59 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#faf8ff;padding-bottom:80px}
-
-/* HERO */
 .hero{background:linear-gradient(135deg,#fdf2f8,#ede9fe,#dbeafe);padding:16px 14px 12px;position:relative;overflow:hidden}
 .hero::after{content:'🍼';position:absolute;top:-6px;right:8px;font-size:56px;opacity:.12;transform:rotate(15deg);pointer-events:none}
 .hero-sub{font-size:9px;font-weight:700;letter-spacing:.1em;color:#9333ea;text-transform:uppercase}
 .hero h1{font-size:18px;font-weight:700;color:#1e1b4b;margin:1px 0 8px}
-
-/* Pregnancy strip */
-.preg-strip{display:flex;gap:8px;align-items:stretch;margin-bottom:10px}
+.preg-strip{display:flex;gap:8px;margin-bottom:10px}
 .preg-card{flex:1;background:rgba(255,255,255,.6);border-radius:10px;padding:7px 10px;text-align:center}
 .preg-card .pval{font-size:17px;font-weight:700;color:#6d28d9}
 .preg-card .plbl{font-size:9px;color:#7c3aed;margin-top:1px}
-.countdown-card{flex:1;background:rgba(255,255,255,.6);border-radius:10px;padding:7px 10px;text-align:center}
-.countdown-card .cval{font-size:17px;font-weight:700;color:#2563eb}
-.countdown-card .clbl{font-size:9px;color:#2563eb;margin-top:1px}
-
-/* Progress */
 .pbar{height:5px;background:rgba(255,255,255,.55);border-radius:999px;overflow:hidden}
 .pfill{height:100%;background:linear-gradient(90deg,#a78bfa,#60a5fa);border-radius:999px;transition:width .4s}
 .plabel{font-size:9px;color:#7c3aed;margin-top:2px}
-
-/* Budget */
 .budgets{display:flex;gap:6px;padding:8px 12px;overflow-x:auto;scrollbar-width:none}
 .budgets::-webkit-scrollbar{display:none}
 .bc{flex-shrink:0;background:#fff;border-radius:10px;padding:7px 10px;min-width:72px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.bc .be{font-size:13px;margin-bottom:1px}.bc .bv{font-size:13px;font-weight:700;color:#1e293b}.bc .bl{font-size:8px;color:#94a3b8;margin-top:1px}
-
-/* Share */
+.bc .be{font-size:13px}.bc .bv{font-size:13px;font-weight:700;color:#1e293b}.bc .bl{font-size:8px;color:#94a3b8;margin-top:1px}
 .sharebar{margin:0 12px 8px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:7px 10px;display:flex;align-items:center;gap:8px}
 .sharebar p{flex:1;font-size:10px;color:#166534;font-weight:500}
 .sharebtn{background:#16a34a;color:#fff;border:none;border-radius:20px;padding:5px 10px;font-size:10px;font-weight:700;cursor:pointer}
 .sharemsg{font-size:9px;color:#166534;margin:0 12px 5px;display:none}
-
-/* Tabs */
 .tabs{display:flex;gap:5px;padding:0 12px 8px;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex-shrink:0;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;background:#fff;color:#64748b;border:1.5px solid #e2e8f0;white-space:nowrap}
 .tab.active{color:#fff;border-color:transparent}
 .tab-add{flex-shrink:0;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;background:#faf5ff;color:#7c3aed;border:1.5px dashed #c4b5fd;white-space:nowrap}
-
-/* Section header */
 .sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:2px 12px 6px}
 .sec-title{font-size:13px;font-weight:700;color:#1e293b}
 .sec-hint{font-size:9px;color:#94a3b8}
 
-/* GRID — 4 columns, tiny squares */
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 12px}
-.card{border-radius:10px;overflow:visible;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08);position:relative;aspect-ratio:1;cursor:pointer;transition:transform .12s}
+/* Grid wrapper — gives room for edit badge overflow */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 12px}
+/* Each cell is a wrapper so edit badge can sit outside card */
+.cell{position:relative}
+.card{border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08);position:relative;aspect-ratio:1;cursor:pointer;transition:transform .12s;width:100%}
 .card:active{transform:scale(.94)}
-.card-img{width:100%;height:100%;object-fit:cover;display:block;border-radius:10px}
-.card-emoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:26px;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:10px}
-.card-overlay{position:absolute;inset:0;border-radius:10px;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.0) 55%,transparent 100%)}
+.card-img{width:100%;height:100%;object-fit:cover;display:block}
+.card-emoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:26px;background:linear-gradient(135deg,#f8fafc,#f1f5f9)}
+.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.0) 55%,transparent 100%)}
 .card.bought .card-overlay{background:linear-gradient(to top,rgba(22,163,74,.8) 0%,rgba(22,163,74,.1) 55%,transparent 100%)}
-.card-bottom{position:absolute;bottom:0;left:0;right:0;padding:4px 5px;border-radius:0 0 10px 10px}
+.card-bottom{position:absolute;bottom:0;left:0;right:0;padding:4px 5px}
 .card-name{font-size:7.5px;font-weight:600;color:#fff;line-height:1.2;text-shadow:0 1px 2px rgba(0,0,0,.6)}
-.card-price{font-size:7px;color:rgba(255,255,255,.85);margin-top:0px}
-.card-check{position:absolute;top:3px;right:3px;width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;cursor:pointer;z-index:3}
+.card-price{font-size:7px;color:rgba(255,255,255,.85)}
+.card-check{position:absolute;top:4px;right:4px;width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.25);border:1.5px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;cursor:pointer;z-index:3}
 .card-check.done{background:#16a34a;border-color:#16a34a}
-/* Edit badge — bottom right outside card */
-.card-edit-btn{position:absolute;bottom:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:#7c3aed;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;cursor:pointer;z-index:4;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-
-/* Add card */
-.card-add{border-radius:10px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.05);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:2px dashed #e2e8f0;transition:transform .12s}
+/* Edit badge lives in .cell, NOT inside .card */
+.edit-badge{position:absolute;bottom:-7px;right:-7px;width:20px;height:20px;border-radius:50%;background:#7c3aed;border:2px solid #faf8ff;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;cursor:pointer;z-index:10;box-shadow:0 1px 4px rgba(0,0,0,.25);line-height:1}
+.edit-badge:active{transform:scale(.88)}
+.card-add{border-radius:10px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.05);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:2px dashed #e2e8f0;width:100%}
 .card-add:active{transform:scale(.94)}
 .card-add-icon{font-size:18px;opacity:.3}
 .card-add-lbl{font-size:8px;color:#94a3b8;font-weight:600;text-align:center}
-
 /* Modal */
 .mbg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;display:flex;align-items:flex-end;justify-content:center}
-.msheet{background:#fff;border-radius:22px 22px 0 0;padding:16px 16px 44px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
+.msheet{background:#fff;border-radius:22px 22px 0 0;padding:16px 16px 48px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
 .mhandle{width:34px;height:4px;background:#e2e8f0;border-radius:999px;margin:0 auto 12px}
 .mtitle{font-size:16px;font-weight:700;color:#1e293b;margin-bottom:2px}
 .msub{font-size:11px;color:#94a3b8;margin-bottom:12px}
@@ -87,11 +70,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .paste-row{display:flex;gap:8px;margin-bottom:8px}
 .paste-input{flex:1;font-size:13px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;font-family:inherit;background:#fafafa}
 .paste-input:focus{outline:none;border-color:#a78bfa;background:#fff}
-.btn-go{background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;min-width:52px}
+.btn-go{background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;min-width:52px}
 .btn-go:disabled{background:#c4b5fd;cursor:not-allowed}
 .fstatus{font-size:11px;color:#7c3aed;margin-bottom:6px;min-height:14px;text-align:center}
 .preview-row{display:flex;gap:10px;align-items:center;background:#f8f7ff;border-radius:10px;padding:9px;margin-bottom:10px}
-.preview-thumb{width:52px;height:52px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden;background:#e2e8f0}
+.preview-thumb{width:50px;height:50px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden;background:#e2e8f0}
 .preview-thumb img{width:100%;height:100%;object-fit:cover}
 .preview-name{font-size:13px;font-weight:600;color:#1e293b;margin-bottom:2px}
 .preview-price{font-size:12px;color:#7c3aed}
@@ -118,39 +101,40 @@ firebase.initializeApp({
   messagingSenderId:"286961925725",
   appId:"1:286961925725:web:f48b0482e44262659c57b4"
 });
-const db=firebase.database(),dbRef=db.ref("nursery5");
+const db=firebase.database(),dbRef=db.ref("nursery6");
 
-// ---- PREGNANCY CALC ----
-// Anna is 16w1d as of May 15 2026, due Oct 24 2026
+// ---- PREGNANCY ----
+// Anna is 16w1d on May 15 2026. Due Oct 24 2026.
+// LMP back-calculated: May 15 minus (16*7+1) = 113 days => Jan 22 2026
+var LMP_DATE = new Date(2026, 0, 22); // Jan 22 2026
+
 function getPregnancyInfo(){
-  var now=new Date();
-  // Eastern time offset (EDT = UTC-4, EST = UTC-5)
-  var utc=now.getTime()+now.getTimezoneOffset()*60000;
-  var eastern=new Date(utc-4*3600000); // EDT
-  var today=new Date(eastern.getFullYear(),eastern.getMonth(),eastern.getDate());
-  // Due date
-  var due=new Date(2026,9,24); // Oct 24 2026
-  // Conception approx: due - 280 days
-  var lmp=new Date(due.getTime()-280*24*3600000);
-  // Days since LMP
-  var daysSinceLMP=Math.floor((today-lmp)/(24*3600000));
-  var weeks=Math.floor(daysSinceLMP/7);
-  var days=daysSinceLMP%7;
-  // Days until due
-  var daysLeft=Math.floor((due-today)/(24*3600000));
-  return{weeks:weeks,days:days,daysLeft:Math.max(0,daysLeft)};
+  // Get today in Eastern time
+  var now = new Date();
+  var etOffset = -4 * 60; // EDT (UTC-4); switches to -5 in Nov but baby is Oct
+  var utcMin = now.getTime() / 60000 + now.getTimezoneOffset();
+  var etMin = utcMin + etOffset;
+  var etNow = new Date(etMin * 60000);
+  var today = new Date(etNow.getFullYear(), etNow.getMonth(), etNow.getDate());
+  var due = new Date(2026, 9, 24); // Oct 24 2026
+  var daysSinceLMP = Math.floor((today - LMP_DATE) / 86400000);
+  var weeks = Math.floor(daysSinceLMP / 7);
+  var days = daysSinceLMP % 7;
+  var daysLeft = Math.floor((due - today) / 86400000);
+  return { weeks: weeks, days: days, daysLeft: Math.max(0, daysLeft) };
 }
 
-// Schedule midnight ET refresh
-function scheduleMidnightRefresh(){
-  var now=new Date();
-  var utc=now.getTime()+now.getTimezoneOffset()*60000;
-  var eastern=new Date(utc-4*3600000);
-  var tomorrow=new Date(eastern.getFullYear(),eastern.getMonth(),eastern.getDate()+1);
-  var msUntilMidnight=tomorrow-eastern;
-  setTimeout(function(){render();scheduleMidnightRefresh();},msUntilMidnight);
+// Refresh at midnight ET
+function scheduleMidnight(){
+  var now = new Date();
+  var etOffset = -4 * 60;
+  var utcMin = now.getTime()/60000 + now.getTimezoneOffset();
+  var etNow = new Date((utcMin + etOffset)*60000);
+  var tomorrow = new Date(etNow.getFullYear(), etNow.getMonth(), etNow.getDate()+1);
+  var msLeft = tomorrow - etNow;
+  setTimeout(function(){ render(); scheduleMidnight(); }, msLeft);
 }
-scheduleMidnightRefresh();
+scheduleMidnight();
 
 const DEF_CATS=[
   {id:"furniture",name:"Furniture",icon:"🛏️",color:"#D97706"},
@@ -240,27 +224,23 @@ async function fetchProduct(url){
       var r=await fetch(proxies[i]+encodeURIComponent(url),{signal:AbortSignal.timeout(8000)});
       if(!r.ok)continue;
       var j=await r.json().catch(async function(){return{contents:await r.text()};});
-      html=j.contents||j||"";
+      html=j.contents||"";
       if(html.length>500)break;
     }catch(e){continue;}
   }
   if(!html)throw new Error("no fetch");
   var title="",img="",price="";
-  var tm=html.match(/property=["']og:title["'][^>]*content=["']([^"']{3,200})["']/i)||html.match(/content=["']([^"']{3,200})["'][^>]*property=["']og:title["']/i)||html.match(/<title[^>]*>([^<]{3,200})<\/title>/i);
+  var tm=html.match(/property=["']og:title["'][^>]*content=["']([^"']{3,200})["']/i)
+          ||html.match(/content=["']([^"']{3,200})["'][^>]*property=["']og:title["']/i)
+          ||html.match(/<title[^>]*>([^<]{3,200})<\/title>/i);
   if(tm)title=tm[1].replace(/&amp;/g,"&").replace(/&#039;/g,"'").trim();
-  var im=html.match(/property=["']og:image["'][^>]*content=["']([^"']+)["']/i)||html.match(/content=["']([^"']+)["'][^>]*property=["']og:image["']/i);
+  var im=html.match(/property=["']og:image["'][^>]*content=["']([^"']+)["']/i)
+          ||html.match(/content=["']([^"']+)["'][^>]*property=["']og:image["']/i);
   if(im)img=im[1].trim();
   var pm=html.match(/\$\s*([\d,]+\.\d{2})/)||html.match(/"price":\s*"([\d.]+)"/);
   if(pm)price=pm[1].replace(/,/g,"");
   if(title){title=title.split("|")[0].split(" - ")[0].split(" – ")[0].trim();if(title.length>70)title=title.slice(0,70)+"…";}
   return{title,img,price};
-}
-
-function openEdit(catId,itemId){
-  var item=(state.items[catId]||[]).find(function(i){return i.id===itemId;});
-  if(!item)return;
-  modal={type:"edit",catId:catId,item:JSON.parse(JSON.stringify(item))};
-  render();
 }
 
 function render(){
@@ -277,19 +257,17 @@ function render(){
   var catChk=items.filter(function(i){return i.checked;}).length;
   var h="";
 
-  // Hero
   h+='<div class="hero">';
   h+='<div class="hero-sub">Feldman Family &bull; Nursery Prep</div>';
   h+='<h1>Baby Boy &#x1F476;</h1>';
   h+='<div class="preg-strip">';
   h+='<div class="preg-card"><div class="pval">'+pi.weeks+'w'+pi.days+'d</div><div class="plbl">Pregnancy week</div></div>';
-  h+='<div class="countdown-card"><div class="cval">'+pi.daysLeft+'</div><div class="clbl">Days until Oct 24</div></div>';
+  h+='<div class="preg-card" style="background:rgba(255,255,255,.6)"><div class="pval" style="color:#2563eb">'+pi.daysLeft+'</div><div class="plbl" style="color:#2563eb">Days to Oct 24</div></div>';
   h+='</div>';
   h+='<div class="pbar"><div class="pfill" style="width:'+pct+'%"></div></div>';
-  h+='<div class="plabel">Nursery: '+pct+'% &middot; '+chk+'/'+tot+' items ready</div>';
+  h+='<div class="plabel">Nursery '+pct+'% &middot; '+chk+'/'+tot+' items ready</div>';
   h+='</div>';
 
-  // Budget
   h+='<div class="budgets">';
   h+='<div class="bc"><div class="be">&#x1F4CB;</div><div class="bv">'+fm(est)+'</div><div class="bl">Estimated</div></div>';
   h+='<div class="bc"><div class="be">&#x1F4B3;</div><div class="bv">'+fm(act)+'</div><div class="bl">Spent</div></div>';
@@ -297,11 +275,9 @@ function render(){
   h+='<div class="bc"><div class="be">&#x2705;</div><div class="bv">'+chk+'/'+tot+'</div><div class="bl">Bought</div></div>';
   h+='</div>';
 
-  // Share
-  h+='<div class="sharebar"><p>&#x1F48C; Share with Anna &mdash; edits sync live</p><button class="sharebtn" id="sharebtn">Copy link</button></div>';
-  h+='<div class="sharemsg" id="sharemsg">&#x2705; Copied! Send to Anna.</div>';
+  h+='<div class="sharebar"><p>&#x1F48C; Share with Anna &mdash; live sync</p><button class="sharebtn" id="sharebtn">Copy link</button></div>';
+  h+='<div class="sharemsg" id="sharemsg">&#x2705; Copied!</div>';
 
-  // Tabs
   h+='<div class="tabs">';
   state.cats.forEach(function(c){
     var a=c.id===activeCat;
@@ -309,17 +285,17 @@ function render(){
   });
   h+='<div class="tab-add" id="tab-addcat">+ Cat</div></div>';
 
-  // Section header
   h+='<div class="sec-hdr"><div class="sec-title">'+cat.icon+" "+cat.name+' <span style="font-size:10px;color:#94a3b8;font-weight:400">'+catChk+'/'+items.length+'</span></div>';
-  h+='<div class="sec-hint">Tap=link &bull; ✏️=edit &bull; ✓=bought</div></div>';
+  h+='<div class="sec-hint">Tap=open link &bull; ✏️=edit &bull; ✓=bought</div></div>';
 
-  // Grid
   h+='<div class="grid">';
   items.forEach(function(item){
-    h+='<div class="card'+(item.checked?" bought":"")+'" data-link="'+esc(item.link||"")+'" data-id="'+item.id+'" data-cat="'+activeCat+'">';
+    // Each item is a .cell wrapper — card inside, edit badge OUTSIDE card
+    h+='<div class="cell">';
+    h+='<div class="card'+(item.checked?" bought":"")+'" data-link="'+esc(item.link||"")+'">';
     if(item.img){
       h+='<img class="card-img" src="'+esc(item.img)+'" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\'" alt=""/>';
-      h+='<div class="card-emoji" style="display:none;position:absolute;inset:0;border-radius:10px">'+cat.icon+'</div>';
+      h+='<div class="card-emoji" style="display:none;position:absolute;inset:0">'+cat.icon+'</div>';
     }else{
       h+='<div class="card-emoji">'+cat.icon+'</div>';
     }
@@ -327,22 +303,25 @@ function render(){
     h+='<div class="card-check'+(item.checked?" done":"")+'" data-chk="'+activeCat+'|'+item.id+'">'+(item.checked?"&#x2713;":"")+'</div>';
     h+='<div class="card-bottom"><div class="card-name">'+esc(item.name)+'</div>';
     if(item.est)h+='<div class="card-price">&dollar;'+(parseFloat(item.est)||0)+'</div>';
-    h+='</div>';
-    h+='<div class="card-edit-btn" data-edit="'+activeCat+'|'+item.id+'">&#x270E;</div>';
-    h+='</div>';
+    h+='</div></div>'; // close card
+    // Edit badge is sibling of card, inside cell
+    h+='<div class="edit-badge" data-editcat="'+activeCat+'" data-editid="'+item.id+'">&#x270E;</div>';
+    h+='</div>'; // close cell
   });
-  h+='<div class="card-add" id="addcard"><div class="card-add-icon">+</div><div class="card-add-lbl">Paste link</div></div>';
-  h+='</div>';
+
+  // Add cell
+  h+='<div class="cell"><div class="card-add" id="addcard"><div class="card-add-icon">+</div><div class="card-add-lbl">Paste link</div></div></div>';
+  h+='</div>'; // close grid
 
   // ADD modal
   if(modal&&modal.type==="add"){
     var m=modal;
     h+='<div class="mbg" id="mbg"><div class="msheet">';
     h+='<div class="mhandle"></div><div class="mtitle">Add an item</div>';
-    h+='<div class="msub">'+cat.icon+" "+cat.name+' — paste a product link</div>';
+    h+='<div class="msub">'+cat.icon+" "+cat.name+' &mdash; paste any product link</div>';
     h+='<div class="paste-row"><input class="paste-input" id="purl" type="url" placeholder="Amazon, Wayfair, Target..." value="'+esc(m.url||"")+'"/>';
     h+='<button class="btn-go" id="btn-go"'+(m.fetching?" disabled":"")+'>'+( m.fetching?"⏳":"Go")+'</button></div>';
-    h+='<div class="fstatus" id="fstatus">'+esc(m.status||"")+'</div>';
+    h+='<div class="fstatus">'+esc(m.status||"")+'</div>';
     if(m.preview){
       var p=m.preview;
       h+='<div class="preview-row">';
@@ -365,17 +344,17 @@ function render(){
     h+='<div class="mhandle"></div><div class="mtitle">Edit item</div><div class="msub">'+ecat.icon+" "+ecat.name+'</div>';
     if(ei.img){
       h+='<div class="preview-row"><div class="preview-thumb"><img src="'+esc(ei.img)+'" onerror="this.parentNode.innerHTML=\''+ecat.icon+'\'"/></div>';
-      h+='<div class="preview-name">'+esc(ei.name)+'</div></div>';
+      h+='<div><div class="preview-name">'+esc(ei.name)+'</div></div></div>';
     }
     h+='<label class="flabel">Name</label><input class="finput" id="ei-name" type="text" value="'+esc(ei.name)+'"/>';
     h+='<label class="flabel">Product link</label><input class="finput" id="ei-link" type="url" value="'+esc(ei.link)+'" placeholder="https://..."/>';
-    h+='<label class="flabel">Image URL (optional — for photo on card)</label><input class="finput" id="ei-img" type="url" value="'+esc(ei.img)+'" placeholder="https://...image.jpg"/>';
+    h+='<label class="flabel">Image URL (optional)</label><input class="finput" id="ei-img" type="url" value="'+esc(ei.img)+'" placeholder="https://...image.jpg"/>';
     h+='<div class="frow"><div><label class="flabel">Estimated ($)</label><input class="finput" id="ei-est" type="number" value="'+esc(ei.est)+'"/></div>';
     h+='<div><label class="flabel">Actual ($)</label><input class="finput" id="ei-act" type="number" value="'+esc(ei.act)+'"/></div></div>';
     h+='<label class="flabel">Notes</label><input class="finput" id="ei-notes" type="text" value="'+esc(ei.notes)+'"/>';
     if(ei.link)h+='<a href="'+esc(ei.link)+'" target="_blank" class="btn-openlink">Open product &#x2197;</a>';
     h+='<div class="mactions"><button class="btn-buy'+(ei.checked?" unbuy":"")+'" id="btn-toggle">'+(ei.checked?"&#x2713; Bought":"Mark as bought")+'</button>';
-    h+='<button class="btn-del" id="btn-del">🗑</button></div>';
+    h+='<button class="btn-del" id="btn-del">&#x1F5D1;</button></div>';
     h+='<button class="btn-save" id="btn-save">Save</button>';
     h+='</div></div>';
   }
@@ -404,50 +383,52 @@ function render(){
   });
   document.getElementById("tab-addcat").onclick=function(){modal={type:"addcat"};render();};
 
-  // Card tap = open link
+  // Card tap = open link (only if not check)
   document.querySelectorAll(".card").forEach(function(el){
     el.onclick=function(e){
-      if(e.target.closest(".card-check")||e.target.closest(".card-edit-btn"))return;
+      if(e.target.closest(".card-check"))return;
       var link=el.dataset.link;
       if(link)window.open(link,"_blank");
     };
   });
 
-  // Edit btn — SEPARATE element outside card, uses data-edit
-  document.querySelectorAll(".card-edit-btn").forEach(function(el){
-    el.addEventListener("click",function(e){
-      e.stopPropagation();
-      e.preventDefault();
-      var parts=el.dataset.edit.split("|");
-      openEdit(parts[0],parts[1]);
-    });
-  });
-
-  // Check btn
+  // CHECK — direct event binding
   document.querySelectorAll(".card-check").forEach(function(el){
-    el.addEventListener("click",function(e){
+    el.onclick=function(e){
       e.stopPropagation();
-      e.preventDefault();
       var p=el.dataset.chk.split("|");
       state.items[p[0]]=(state.items[p[0]]||[]).map(function(i){
         return i.id===p[1]?Object.assign({},i,{checked:!i.checked}):i;
       });
       save();render();
-    });
+    };
+  });
+
+  // EDIT BADGE — lives outside .card so no bubble issues
+  document.querySelectorAll(".edit-badge").forEach(function(el){
+    el.onclick=function(e){
+      e.stopPropagation();
+      var catId=el.dataset.editcat;
+      var itemId=el.dataset.editid;
+      var item=(state.items[catId]||[]).find(function(i){return i.id===itemId;});
+      if(!item)return;
+      modal={type:"edit",catId:catId,item:JSON.parse(JSON.stringify(item))};
+      render();
+    };
   });
 
   // Add card
   var addcard=document.getElementById("addcard");
   if(addcard)addcard.onclick=function(){modal={type:"add",catId:activeCat,url:"",status:"",preview:null,fetching:false};render();};
 
-  // Modal bg
+  // Modal bg close
   var mbg=document.getElementById("mbg");
   if(mbg)mbg.onclick=function(e){if(e.target.id==="mbg"){modal=null;render();}};
 
-  // ADD modal events
+  // ADD modal
   if(modal&&modal.type==="add"){
     var purl=document.getElementById("purl");
-    if(purl)purl.focus();
+    if(purl){purl.focus();}
     var btnGo=document.getElementById("btn-go");
     if(btnGo)btnGo.onclick=async function(){
       var url=(document.getElementById("purl").value||"").trim();
@@ -458,13 +439,13 @@ function render(){
         var res=await fetchProduct(url);
         modal.fetching=false;
         if(res.title||res.img){modal.preview=res;modal.status="";}
-        else{modal.status="Couldn't auto-fill — type the name below.";}
-      }catch(err){modal.fetching=false;modal.status="Couldn't read that page — enter name manually.";}
+        else modal.status="Couldn't auto-fill — type the name below.";
+      }catch(err){modal.fetching=false;modal.status="Enter the name manually below.";}
       render();
     };
     if(purl)purl.onkeydown=function(e){if(e.key==="Enter"&&btnGo)btnGo.click();};
-    var btnAddConfirm=document.getElementById("btn-addconfirm");
-    if(btnAddConfirm)btnAddConfirm.onclick=function(){
+    var btnAC=document.getElementById("btn-addconfirm");
+    if(btnAC)btnAC.onclick=function(){
       var name=(document.getElementById("ei-name").value||"").trim()||(modal.preview&&modal.preview.title)||"New item";
       var est=document.getElementById("ei-est").value||"";
       var prev=modal.preview||{};
@@ -475,7 +456,7 @@ function render(){
     };
   }
 
-  // EDIT modal events
+  // EDIT modal
   if(modal&&modal.type==="edit"){
     var btnSave=document.getElementById("btn-save");
     if(btnSave)btnSave.onclick=function(){
@@ -490,14 +471,14 @@ function render(){
       });
       save();modal=null;render();
     };
-    var btnToggle=document.getElementById("btn-toggle");
-    if(btnToggle)btnToggle.onclick=function(){
+    var btnT=document.getElementById("btn-toggle");
+    if(btnT)btnT.onclick=function(){
       modal.item.checked=!modal.item.checked;
-      btnToggle.className="btn-buy"+(modal.item.checked?" unbuy":"");
-      btnToggle.innerHTML=modal.item.checked?"&#x2713; Bought":"Mark as bought";
+      btnT.className="btn-buy"+(modal.item.checked?" unbuy":"");
+      btnT.innerHTML=modal.item.checked?"&#x2713; Bought":"Mark as bought";
     };
-    var btnDel=document.getElementById("btn-del");
-    if(btnDel)btnDel.onclick=function(){
+    var btnD=document.getElementById("btn-del");
+    if(btnD)btnD.onclick=function(){
       if(!confirm("Remove this item?"))return;
       state.items[modal.catId]=(state.items[modal.catId]||[]).filter(function(i){return i.id!==modal.item.id;});
       save();modal=null;render();
@@ -506,10 +487,10 @@ function render(){
 
   // ADD CAT
   if(modal&&modal.type==="addcat"){
-    var catNameEl=document.getElementById("cat-name");
-    if(catNameEl)catNameEl.focus();
-    var btnAC=document.getElementById("btn-addcat");
-    if(btnAC)btnAC.onclick=function(){
+    var cn=document.getElementById("cat-name");
+    if(cn)cn.focus();
+    var btnNC=document.getElementById("btn-addcat");
+    if(btnNC)btnNC.onclick=function(){
       var n=(document.getElementById("cat-name").value||"").trim();
       var ic=document.getElementById("cat-icon").value||"📦";
       if(!n)return;
