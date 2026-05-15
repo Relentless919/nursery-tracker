@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Nursery Prep Tracker</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f7ff;padding-bottom:60px}
+#status{padding:20px;text-align:center;font-size:13px;color:#7c3aed}
+.hero{background:linear-gradient(135deg,#fdf2f8,#ede9fe,#dbeafe);padding:24px 20px 20px;position:relative;overflow:hidden}
+.hero::after{content:'🍼';position:absolute;top:-10px;right:12px;font-size:72px;opacity:.12;transform:rotate(15deg)}
+.hero-label{font-size:11px;font-weight:600;letter-spacing:.08em;color:#9333ea;text-transform:uppercase;margin-bottom:2px}
+.hero h1{font-size:22px;font-weight:600;color:#1e1b4b;margin-bottom:2px}
+.hero p{font-size:13px;color:#6d28d9;margin-bottom:14px}
+.progress-bar{height:8px;background:rgba(255,255,255,.6);border-radius:999px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#a78bfa,#60a5fa);border-radius:999px;transition:width .4s}
+.prog-label{font-size:11px;color:#7c3aed;margin-top:4px}
+.wrap{padding:14px}
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.bc{border-radius:14px;padding:12px 14px}
+.bc .e{font-size:18px}.bc .v{font-size:20px;font-weight:600;margin:2px 0}.bc .l{font-size:11px;opacity:.7}
+.sharebox{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:14px;margin-bottom:14px}
+.sharebox h3{font-size:13px;font-weight:600;color:#14532d}
+.sharebox p{font-size:11px;color:#166534;margin:2px 0 8px}
+.srow{display:flex;gap:8px}
+.surl{flex:1;font-size:11px;padding:7px 8px;border:1px solid #bbf7d0;border-radius:10px;background:#fff;color:#14532d;font-family:monospace}
+.sbtn{background:#16a34a;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer}
+.smsg{font-size:11px;color:#166534;margin-top:5px;display:none}
+.cat{border-radius:16px;overflow:hidden;margin-bottom:12px}
+.cath{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;user-select:none}
+.cati{font-size:20px}.catn{font-size:14px;font-weight:600;color:#1e293b;margin-bottom:3px}
+.catprow{display:flex;align-items:center;gap:6px}
+.catbar{flex:1;height:4px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.6)}
+.catfill{height:100%;border-radius:999px;transition:width .3s}
+.catct{font-size:11px;font-weight:600}
+.catbody{background:#fff;display:none}.catbody.open{display:block}
+.irow{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:.5px solid #f1f5f9;cursor:pointer}
+.cb{width:20px;height:20px;border-radius:6px;border:2px solid #cbd5e1;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#fff;cursor:pointer}
+.iname{flex:1;font-size:13px;color:#1e293b}.iname.done{color:#94a3b8;text-decoration:line-through}
+.imeta{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.pbadge{font-size:11px;padding:1px 6px;border-radius:20px;font-weight:600}
+.idet{background:#fafafa;padding:10px 14px 12px 42px;display:none;border-bottom:.5px solid #f1f5f9}
+.idet.open{display:block}
+.nbox{font-size:12px;color:#475569;padding:5px 8px;border-radius:7px;margin-bottom:7px;border-left:3px solid #ccc}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
+.fi label,.ff label{font-size:11px;color:#64748b;display:block;margin-bottom:2px}
+.fi input,.ff input{width:100%;font-size:12px;padding:4px 7px;border:1px solid #e2e8f0;border-radius:7px;font-family:inherit}
+.ff{margin-bottom:6px}
+.bdel{font-size:11px;color:#ef4444;border:1px solid #fca5a5;background:transparent;padding:3px 8px;cursor:pointer;border-radius:7px;margin-top:3px}
+.addrow{padding:9px 14px;border-top:.5px solid #f1f5f9;display:flex;align-items:center;gap:6px}
+.addibtn{font-size:12px;font-weight:600;border:none;background:transparent;cursor:pointer}
+.addinput{flex:1;font-size:12px;padding:4px 7px;border:1px solid #e2e8f0;border-radius:7px}
+.bsm{font-size:11px;padding:4px 10px;border-radius:7px;cursor:pointer;border:1px solid #e2e8f0;background:#fff}
+.bsm.p{color:#fff;border:none}
+.remcat{font-size:10px;color:#94a3b8;border:none;background:transparent;cursor:pointer;padding:3px 14px 8px;display:block;margin-left:auto}
+.addcatbtn{width:100%;font-size:13px;font-weight:600;color:#7c3aed;background:#faf5ff;border:1.5px dashed #c4b5fd;border-radius:14px;padding:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;margin-top:4px}
+.addcatrow{display:flex;gap:7px;margin-top:4px}
+.addcatin{flex:1;font-size:13px;padding:7px 10px;border:1px solid #e2e8f0;border-radius:10px}
+.syncst{text-align:center;font-size:11px;color:#cbd5e1;margin-top:18px}
+</style>
+</head>
+<body>
+<div id="status">🍼 Connecting to Firebase...</div>
+<div id="app" style="display:none"></div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+const COLORS={
+  furniture:{bg:"#FEF3C7",ac:"#D97706",li:"#FDE68A"},
+  sleep:{bg:"#EDE9FE",ac:"#7C3AED",li:"#DDD6FE"},
+  monitor:{bg:"#DBEAFE",ac:"#2563EB",li:"#BFDBFE"},
+  feeding:{bg:"#FCE7F3",ac:"#DB2777",li:"#FBCFE8"},
+  bathing:{bg:"#CFFAFE",ac:"#0891B2",li:"#A5F3FC"},
+  health:{bg:"#DCFCE7",ac:"#16A34A",li:"#BBF7D0"},
+  clothing:{bg:"#FFE4E6",ac:"#E11D48",li:"#FECDD3"},
+};
+const gc=id=>COLORS[id]||{bg:"#F1F5F9",ac:"#64748B",li:"#E2E8F0"};
+const uid=()=>Math.random().toString(36).slice(2,9);
+const fm=n=>n?"$"+parseFloat(n).toLocaleString("en-US",{maximumFractionDigits:0}):"—";
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+
+const DEFAULT=[
+  {id:"furniture",name:"Furniture",icon:"🛏️",items:[
+    {id:"crib",name:"Crib",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"bassinet",name:"Bassinet (bedside, ~3 months)",checked:false,notes:"Get all-in-one with pad and sheets.",link:"",est:"",act:""},
+    {id:"changing-table",name:"Changing table / dresser",checked:false,notes:"Wayfair solid wood 9 drawer",link:"https://www.wayfair.com/baby-kids/pdp/one-allium-way-551-w-100-solid-wood-9-drawer-changing-table-dresser-w117255370.html",est:"",act:""},
+    {id:"recliner",name:"Power button recliner",checked:false,notes:"ARM RESTS ARE A MUST. Great for feeding, rocking, reading.",link:"",est:"",act:""},
+    {id:"side-table",name:"Side table",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"acrylic-shelf",name:"Acrylic shelf",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"rug",name:"Mat / rug",checked:false,notes:"House of Noa Tumbling Mat - Bluebell",link:"https://www.thehouseofnoa.com/products/tumbling-mat-bluebell?variant=41686954901551",est:"",act:""},
+    {id:"utility-cart",name:"Utility cart",checked:false,notes:"Postpartum station: breast pads, trail mix, water bottle, burp cloths, diapers, puppy pee pads.",link:"",est:"",act:""},
+  ]},
+  {id:"sleep",name:"Sleep",icon:"😴",items:[
+    {id:"mattress",name:"Crib mattress",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"mprotect",name:"Mattress protector",checked:false,notes:"Amazon / registry",link:"",est:"",act:""},
+    {id:"sheets",name:"Crib sheets",checked:false,notes:"Amazon / registry",link:"",est:"",act:""},
+    {id:"sleepsack",name:"Sleep sacks",checked:false,notes:"Safer than blankets - get multiple sizes",link:"",est:"",act:""},
+    {id:"sound",name:"Sound machine",checked:false,notes:"Helps baby stay asleep longer",link:"",est:"",act:""},
+    {id:"nightlight",name:"Night light - Hatch Tap",checked:false,notes:"Comforting ambience without overhead light.",link:"https://www.amazon.com/s?k=hatch+rest+tap",est:"",act:""},
+  ]},
+  {id:"monitor",name:"Monitor",icon:"📷",items:[
+    {id:"mon-home",name:"Baby monitor - no WiFi (home)",checked:false,notes:"Closed circuit - more secure.",link:"",est:"",act:""},
+    {id:"mon-travel",name:"Travel monitor",checked:false,notes:"Closed circuit preferred",link:"",est:"",act:""},
+    {id:"owlet",name:"Owlet smart sock",checked:false,notes:"Tracks oxygen and heart rate while sleeping",link:"",est:"",act:""},
+  ]},
+  {id:"feeding",name:"Feeding",icon:"🍼",items:[
+    {id:"bottles",name:"Baby bottles x6",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"pump",name:"Breast pump",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"nursing",name:"Nursing pillow",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"sterilizer",name:"Bottle sterilizer",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"bibs",name:"Burp cloths and bibs",checked:false,notes:"",link:"",est:"",act:""},
+  ]},
+  {id:"bathing",name:"Bathing",icon:"🛁",items:[
+    {id:"tub",name:"Baby bathtub",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"towels",name:"Hooded towels x3",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"wash",name:"Baby wash and shampoo",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"lotion",name:"Baby lotion",checked:false,notes:"",link:"",est:"",act:""},
+  ]},
+  {id:"health",name:"Health and Safety",icon:"🏥",items:[
+    {id:"therm",name:"Rectal thermometer",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"nasal",name:"Nasal aspirator (Frida)",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"firstaid",name:"Baby first aid kit",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"outlet",name:"Outlet covers",checked:false,notes:"",link:"",est:"",act:""},
+  ]},
+  {id:"clothing",name:"Clothing",icon:"👕",items:[
+    {id:"onesies",name:"Onesies newborn and 0-3mo",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"sleepers",name:"Sleepers and footed pajamas",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"hats",name:"Newborn hats and mittens",checked:false,notes:"",link:"",est:"",act:""},
+    {id:"detergent",name:"Baby laundry detergent",checked:false,notes:"",link:"",est:"",act:""},
+  ]},
+];
+
+let cats=[],expCat="furniture",expItem=null,addItem=null,addCat=false;
+
+firebase.initializeApp({
+  apiKey:"AIzaSyD12wJ5v6QV_58H5aoI62W-afjk1iKEwkY",
+  authDomain:"nursery-prep-tracker.firebaseapp.com",
+  databaseURL:"https://nursery-prep-tracker-default-rtdb.firebaseio.com",
+  projectId:"nursery-prep-tracker",
+  storageBucket:"nursery-prep-tracker.firebasestorage.app",
+  messagingSenderId:"286961925725",
+  appId:"1:286961925725:web:f48b0482e44262659c57b4"
+});
+
+const db=firebase.database();
+const r=db.ref("nursery/categories");
+
+r.once("value",function(snap){
+  var d=snap.val();
+  cats=d||DEFAULT;
+  if(!d) r.set(DEFAULT);
+  document.getElementById("status").style.display="none";
+  document.getElementById("app").style.display="block";
+  render();
+});
+r.on("value",function(snap){
+  var d=snap.val();
+  if(d){cats=d;render();}
+});
+
+function save(){r.set(cats);}
+
+function render(){
+  var all=cats.flatMap(function(c){return c.items;});
+  var est=all.reduce(function(s,i){return s+(parseFloat(i.est)||0);},0);
+  var act=all.filter(function(i){return i.act!=="";}).reduce(function(s,i){return s+(parseFloat(i.act)||0);},0);
+  var tot=all.length,chk=all.filter(function(i){return i.checked;}).length;
+  var pct=tot?Math.round(chk/tot*100):0;
+  var h="";
+  h+='<div class="hero"><div class="hero-label">Feldman Family</div>';
+  h+='<h1>Nursery prep tracker</h1><p>Baby boy arriving October 2026 &#x1F476;</p>';
+  h+='<div class="progress-bar"><div class="progress-fill" style="width:'+pct+'%"></div></div>';
+  h+='<div class="prog-label">'+pct+'% &middot; '+chk+' of '+tot+' items checked off</div></div>';
+  h+='<div class="wrap">';
+  h+='<div class="bgrid">';
+  h+='<div class="bc" style="background:#FEF9C3;color:#713F12"><div class="e">&#x1F4CB;</div><div class="v">'+fm(est)+'</div><div class="l">Estimated</div></div>';
+  h+='<div class="bc" style="background:#FCE7F3;color:#831843"><div class="e">&#x1F4B3;</div><div class="v">'+fm(act)+'</div><div class="l">Spent so far</div></div>';
+  h+='<div class="bc" style="background:#DCFCE7;color:#14532D"><div class="e">&#x1F3AF;</div><div class="v">'+(est?fm(Math.max(0,est-act)):"—")+'</div><div class="l">Remaining</div></div>';
+  h+='<div class="bc" style="background:#DBEAFE;color:#1E3A8A"><div class="e">&#x2705;</div><div class="v">'+chk+'/'+tot+'</div><div class="l">Purchased</div></div>';
+  h+='</div>';
+  h+='<div class="sharebox"><h3>&#x1F48C; Share with Anna</h3>';
+  h+='<p>Send her this link &mdash; edits sync instantly on any device!</p>';
+  h+='<div class="srow"><input class="surl" id="surl" value="'+esc(window.location.href)+'" readonly/>';
+  h+='<button class="sbtn" id="copybtn">Copy link</button></div>';
+  h+='<div class="smsg" id="smsg">&#x2705; Copied! Send it to Anna.</div></div>';
+
+  cats.forEach(function(cat){
+    var c=gc(cat.id);
+    var cc=cat.items.filter(function(i){return i.checked;}).length;
+    var ct=cat.items.length;
+    var cp=ct?Math.round(cc/ct*100):0;
+    var io=expCat===cat.id;
+    h+='<div class="cat" style="border:1.5px solid '+c.li+'">';
+    h+='<div class="cath" style="background:'+c.bg+'" data-cid="'+cat.id+'">';
+    h+='<div class="cati">'+cat.icon+'</div>';
+    h+='<div style="flex:1;min-width:0"><div class="catn">'+esc(cat.name)+'</div>';
+    h+='<div class="catprow"><div class="catbar"><div class="catfill" style="width:'+cp+'%;background:'+c.ac+'"></div></div>';
+    h+='<div class="catct" style="color:'+c.ac+'">'+cc+'/'+ct+'</div></div></div>';
+    h+='<div style="font-size:13px;color:'+c.ac+'">'+(io?"&#x25B2;":"&#x25BC;")+'</div></div>';
+    h+='<div class="catbody'+(io?" open":"")+'">';
+    cat.items.forEach(function(item){
+      var ii=expItem===item.id;
+      h+='<div><div class="irow" data-iid="'+item.id+'">';
+      h+='<div class="cb" data-cid2="'+cat.id+'" data-iid2="'+item.id+'" style="'+(item.checked?"background:"+c.ac+";border-color:"+c.ac:"")+'">'+( item.checked?"&#x2713;":"")+'</div>';
+      h+='<div class="iname'+(item.checked?" done":"")+'">'+esc(item.name)+'</div>';
+      h+='<div class="imeta">';
+      if(item.est) h+='<span class="pbadge" style="background:'+c.bg+';color:'+c.ac+'">&dollar;'+(parseFloat(item.est)||0)+'</span>';
+      if(item.link) h+='<a href="'+esc(item.link)+'" target="_blank" style="color:'+c.ac+';text-decoration:none;font-size:14px" data-extlink="1">&#x2197;</a>';
+      if(item.notes) h+='<span style="font-size:12px">&#x1F4DD;</span>';
+      h+='<span style="font-size:11px;color:#94a3b8">'+(ii?"&#x25B2;":"&#x25BC;")+'</span>';
+      h+='</div></div>';
+      h+='<div class="idet'+(ii?" open":"")+'">';
+      if(item.notes) h+='<div class="nbox" style="border-left-color:'+c.ac+';background:'+c.bg+'">'+esc(item.notes)+'</div>';
+      h+='<div class="fg">';
+      h+='<div class="fi"><label>Estimated ($)</label><input type="number" value="'+esc(item.est||"")+'" placeholder="0" data-f="'+cat.id+"|"+item.id+'|est"/></div>';
+      h+='<div class="fi"><label>Actual ($)</label><input type="number" value="'+esc(item.act||"")+'" placeholder="0" data-f="'+cat.id+"|"+item.id+'|act"/></div>';
+      h+='</div>';
+      h+='<div class="ff"><label>Product link</label><input type="url" value="'+esc(item.link||"")+'" placeholder="https://..." data-f="'+cat.id+"|"+item.id+'|link"/></div>';
+      h+='<div class="ff"><label>Notes</label><input type="text" value="'+esc(item.notes||"")+'" placeholder="Any notes..." data-f="'+cat.id+"|"+item.id+'|notes"/></div>';
+      h+='<button class="bdel" data-del="'+cat.id+"|"+item.id+'">&#x1F5D1; Remove</button>';
+      h+='</div></div>';
+    });
+    h+='<div class="addrow">';
+    if(addItem===cat.id){
+      h+='<input class="addinput" id="newiteminput" placeholder="Item name..."/>';
+      h+='<button class="bsm p" style="background:'+c.ac+'" data-additem="'+cat.id+'">Add</button>';
+      h+='<button class="bsm" data-cancelitem="1">Cancel</button>';
+    } else {
+      h+='<button class="addibtn" style="color:'+c.ac+'" data-startitem="'+cat.id+'">+ Add item</button>';
+    }
+    h+='</div><button class="remcat" data-delcat="'+cat.id+'">&#x1F5D1; Remove category</button>';
+    h+='</div></div>';
+  });
+
+  if(addCat){
+    h+='<div class="addcatrow"><input class="addcatin" id="newcatinput" placeholder="Category name..."/>';
+    h+='<button class="bsm p" style="background:#7c3aed;color:#fff;border:none" id="submitcat">Add</button>';
+    h+='<button class="bsm" id="cancelcat">Cancel</button></div>';
+  } else {
+    h+='<button class="addcatbtn" id="startcat">+ Add a category</button>';
+  }
+  h+='<div class="syncst">&#x1F504; Live sync via Firebase &middot; Changes save instantly</div></div>';
+  document.getElementById("app").innerHTML=h;
+
+  document.getElementById("copybtn").onclick=function(){
+    navigator.clipboard.writeText(document.getElementById("surl").value).catch(function(){});
+    var m=document.getElementById("smsg");m.style.display="block";
+    setTimeout(function(){m.style.display="none";},2500);
+  };
+  document.querySelectorAll(".cath").forEach(function(el){
+    el.onclick=function(){expCat=expCat===el.dataset.cid?null:el.dataset.cid;render();};
+  });
+  document.querySelectorAll(".irow").forEach(function(el){
+    el.onclick=function(e){
+      if(e.target.closest(".cb")||e.target.closest("[data-extlink]"))return;
+      expItem=expItem===el.dataset.iid?null:el.dataset.iid;render();
+    };
+  });
+  document.querySelectorAll(".cb").forEach(function(el){
+    el.onclick=function(e){
+      e.stopPropagation();
+      var cId=el.dataset.cid2,iId=el.dataset.iid2;
+      cats=cats.map(function(c){
+        if(c.id!==cId)return c;
+        return Object.assign({},c,{items:c.items.map(function(i){
+          if(i.id!==iId)return i;
+          return Object.assign({},i,{checked:!i.checked});
+        })});
+      });
+      save();render();
+    };
+  });
+  document.querySelectorAll("[data-f]").forEach(function(el){
+    el.onchange=function(){
+      var p=el.dataset.f.split("|"),cId=p[0],iId=p[1],f=p[2];
+      cats=cats.map(function(c){
+        if(c.id!==cId)return c;
+        return Object.assign({},c,{items:c.items.map(function(i){
+          if(i.id!==iId)return i;
+          var u=Object.assign({},i);u[f]=el.value;return u;
+        })});
+      });
+      save();
+    };
+  });
+  document.querySelectorAll("[data-del]").forEach(function(el){
+    el.onclick=function(){
+      var p=el.dataset.del.split("|"),cId=p[0],iId=p[1];
+      cats=cats.map(function(c){
+        if(c.id!==cId)return c;
+        return Object.assign({},c,{items:c.items.filter(function(i){return i.id!==iId;})});
+      });
+      if(expItem===iId)expItem=null;
+      save();render();
+    };
+  });
+  document.querySelectorAll("[data-delcat]").forEach(function(el){
+    el.onclick=function(){cats=cats.filter(function(c){return c.id!==el.dataset.delcat;});save();render();};
+  });
+  document.querySelectorAll("[data-startitem]").forEach(function(el){
+    el.onclick=function(){addItem=el.dataset.startitem;render();};
+  });
+  document.querySelectorAll("[data-additem]").forEach(function(el){
+    el.onclick=function(){
+      var v=document.getElementById("newiteminput").value;
+      if(!v.trim())return;
+      var item={id:uid(),name:v.trim(),checked:false,notes:"",link:"",est:"",act:""};
+      cats=cats.map(function(c){
+        if(c.id!==el.dataset.additem)return c;
+        return Object.assign({},c,{items:c.items.concat([item])});
+      });
+      addItem=null;save();render();
+    };
+  });
+  var ci=document.querySelector("[data-cancelitem]");
+  if(ci)ci.onclick=function(){addItem=null;render();};
+  var ni=document.getElementById("newiteminput");
+  if(ni){ni.focus();ni.onkeydown=function(e){if(e.key==="Enter")document.querySelector("[data-additem]").click();if(e.key==="Escape"){addItem=null;render();}};}
+  var sc=document.getElementById("startcat");
+  if(sc)sc.onclick=function(){addCat=true;render();};
+  var cc2=document.getElementById("cancelcat");
+  if(cc2)cc2.onclick=function(){addCat=false;render();};
+  var subc=document.getElementById("submitcat");
+  if(subc)subc.onclick=function(){
+    var v=document.getElementById("newcatinput").value;
+    if(!v.trim())return;
+    cats=cats.concat([{id:uid(),name:v.trim(),icon:"📦",items:[]}]);
+    expCat=cats[cats.length-1].id;addCat=false;save();render();
+  };
+  var nci=document.getElementById("newcatinput");
+  if(nci){nci.focus();nci.onkeydown=function(e){if(e.key==="Enter")document.getElementById("submitcat").click();if(e.key==="Escape"){addCat=false;render();}};}
+}
+</script>
+</body>
+</html>
