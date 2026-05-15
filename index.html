@@ -6,98 +6,86 @@
 <title>Nursery Prep Tracker</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#faf8ff;min-height:100vh;padding-bottom:80px}
-
-/* Hero */
-.hero{background:linear-gradient(135deg,#fdf2f8,#ede9fe,#dbeafe);padding:20px 16px 16px;position:relative;overflow:hidden}
-.hero::after{content:'🍼';position:absolute;top:-8px;right:10px;font-size:64px;opacity:.13;transform:rotate(15deg);pointer-events:none}
-.hero-sub{font-size:10px;font-weight:700;letter-spacing:.1em;color:#9333ea;text-transform:uppercase;margin-bottom:1px}
-.hero h1{font-size:20px;font-weight:700;color:#1e1b4b;margin-bottom:1px}
-.hero p{font-size:12px;color:#7c3aed;margin-bottom:12px}
-.pbar{height:7px;background:rgba(255,255,255,.55);border-radius:999px;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#faf8ff;padding-bottom:80px}
+.hero{background:linear-gradient(135deg,#fdf2f8,#ede9fe,#dbeafe);padding:18px 16px 14px;position:relative;overflow:hidden}
+.hero::after{content:'🍼';position:absolute;top:-8px;right:10px;font-size:60px;opacity:.12;transform:rotate(15deg);pointer-events:none}
+.hero-sub{font-size:10px;font-weight:700;letter-spacing:.1em;color:#9333ea;text-transform:uppercase}
+.hero h1{font-size:19px;font-weight:700;color:#1e1b4b;margin:1px 0}
+.hero p{font-size:11px;color:#7c3aed;margin-bottom:10px}
+.pbar{height:6px;background:rgba(255,255,255,.55);border-radius:999px;overflow:hidden}
 .pfill{height:100%;background:linear-gradient(90deg,#a78bfa,#60a5fa);border-radius:999px;transition:width .4s}
 .plabel{font-size:10px;color:#7c3aed;margin-top:3px}
-
-/* Budget strip */
-.budgets{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;scrollbar-width:none}
+.budgets{display:flex;gap:7px;padding:10px 14px;overflow-x:auto;scrollbar-width:none}
 .budgets::-webkit-scrollbar{display:none}
-.bcard{flex-shrink:0;background:#fff;border-radius:12px;padding:10px 14px;min-width:100px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.bcard .be{font-size:16px;margin-bottom:2px}
-.bcard .bv{font-size:17px;font-weight:700;color:#1e293b}
-.bcard .bl{font-size:10px;color:#94a3b8;margin-top:1px}
-
-/* Share bar */
-.sharebar{margin:0 16px 12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px}
-.sharebar p{flex:1;font-size:12px;color:#166534;font-weight:500}
-.sharebtn{background:#16a34a;color:#fff;border:none;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
-.sharemsg{font-size:11px;color:#166534;margin:0 16px 8px;display:none}
-
-/* Category tabs */
-.tabs{display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;scrollbar-width:none}
+.bc{flex-shrink:0;background:#fff;border-radius:11px;padding:8px 12px;min-width:80px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.bc .be{font-size:14px;margin-bottom:1px}
+.bc .bv{font-size:15px;font-weight:700;color:#1e293b}
+.bc .bl{font-size:9px;color:#94a3b8;margin-top:1px}
+.sharebar{margin:0 14px 10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:11px;padding:9px 12px;display:flex;align-items:center;gap:8px}
+.sharebar p{flex:1;font-size:11px;color:#166534;font-weight:500}
+.sharebtn{background:#16a34a;color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer}
+.sharemsg{font-size:10px;color:#166534;margin:0 14px 6px;display:none}
+.tabs{display:flex;gap:6px;padding:0 14px 10px;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex-shrink:0;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:2px solid transparent;background:#fff;color:#64748b;transition:all .15s}
+.tab{flex-shrink:0;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#64748b;border:1.5px solid #e2e8f0;white-space:nowrap}
 .tab.active{color:#fff;border-color:transparent}
+.tab-add{flex-shrink:0;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;background:#faf5ff;color:#7c3aed;border:1.5px dashed #c4b5fd;white-space:nowrap}
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:2px 14px 8px}
+.sec-title{font-size:14px;font-weight:700;color:#1e293b}
+.sec-count{font-size:11px;color:#94a3b8}
 
-/* Grid */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 16px}
-
-/* Item card */
-.card{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.07);position:relative;aspect-ratio:1;cursor:pointer;transition:transform .15s}
-.card:active{transform:scale(.97)}
-.card-img{width:100%;height:100%;object-fit:cover;display:block;background:#f1f5f9}
-.card-emoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:52px;background:linear-gradient(135deg,#f8fafc,#f1f5f9)}
-.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,rgba(0,0,0,.1) 55%,transparent 100%)}
-.card-bottom{position:absolute;bottom:0;left:0;right:0;padding:8px 10px}
-.card-name{font-size:12px;font-weight:600;color:#fff;line-height:1.3;text-shadow:0 1px 3px rgba(0,0,0,.4)}
-.card-price{font-size:11px;color:rgba(255,255,255,.85);margin-top:1px}
-.card-check{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.25);border:2px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;transition:all .15s}
+/* GRID — 3 columns, small squares */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 14px}
+.card{border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.08);position:relative;aspect-ratio:1;cursor:pointer;transition:transform .12s}
+.card:active{transform:scale(.96)}
+.card-img{width:100%;height:100%;object-fit:cover;display:block}
+.card-emoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;background:linear-gradient(135deg,#f8fafc,#f1f5f9)}
+.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.05) 55%,transparent 100%)}
+.card.bought .card-overlay{background:linear-gradient(to top,rgba(22,163,74,.75) 0%,rgba(22,163,74,.15) 55%,transparent 100%)}
+.card-bottom{position:absolute;bottom:0;left:0;right:0;padding:5px 6px}
+.card-name{font-size:9px;font-weight:600;color:#fff;line-height:1.25;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.card-price{font-size:8px;color:rgba(255,255,255,.85);margin-top:1px}
+.card-check{position:absolute;top:5px;right:5px;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;cursor:pointer}
 .card-check.done{background:#16a34a;border-color:#16a34a}
-.card-link{position:absolute;top:8px;left:8px;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.25);border:2px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;text-decoration:none}
-.card-link.has-link{background:rgba(99,102,241,.7);border-color:rgba(99,102,241,.9)}
-.card.bought .card-overlay{background:linear-gradient(to top,rgba(22,163,74,.7) 0%,rgba(22,163,74,.2) 55%,transparent 100%)}
-.card-notes{position:absolute;bottom:36px;right:8px;font-size:16px;opacity:.8}
+.card-link{position:absolute;top:5px;left:5px;width:20px;height:20px;border-radius:50%;background:rgba(99,102,241,.75);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;text-decoration:none}
+.card-add{border-radius:12px;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.05);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;border:2px dashed #e2e8f0}
+.card-add:active{transform:scale(.96)}
+.card-add-icon{font-size:22px;opacity:.3}
+.card-add-lbl{font-size:9px;color:#94a3b8;font-weight:600;text-align:center}
 
-/* Edit modal */
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;display:flex;align-items:flex-end;justify-content:center}
-.modal{background:#fff;border-radius:24px 24px 0 0;padding:20px 20px 40px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto}
-.modal-handle{width:36px;height:4px;background:#e2e8f0;border-radius:999px;margin:0 auto 16px}
-.modal-title{font-size:16px;font-weight:700;color:#1e293b;margin-bottom:4px}
-.modal-cat{font-size:11px;color:#94a3b8;margin-bottom:16px}
-.modal-img-row{display:flex;gap:12px;align-items:center;margin-bottom:16px}
-.modal-thumb{width:64px;height:64px;border-radius:12px;object-fit:cover;background:#f1f5f9;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;overflow:hidden}
-.modal-thumb img{width:100%;height:100%;object-fit:cover}
-.modal-img-hint{font-size:12px;color:#64748b;line-height:1.5}
-.flabel{font-size:11px;font-weight:600;color:#64748b;margin-bottom:4px;display:block}
-.finput{width:100%;font-size:14px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;font-family:inherit;margin-bottom:12px;background:#fafafa}
+/* Bottom sheet modal */
+.mbg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;display:flex;align-items:flex-end;justify-content:center}
+.msheet{background:#fff;border-radius:22px 22px 0 0;padding:18px 18px 42px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
+.mhandle{width:34px;height:4px;background:#e2e8f0;border-radius:999px;margin:0 auto 14px}
+.mtitle{font-size:16px;font-weight:700;color:#1e293b;margin-bottom:2px}
+.msub{font-size:11px;color:#94a3b8;margin-bottom:14px}
+.flabel{font-size:11px;font-weight:600;color:#64748b;margin-bottom:3px;display:block}
+.finput{width:100%;font-size:14px;padding:11px 12px;border:1.5px solid #e2e8f0;border-radius:11px;font-family:inherit;margin-bottom:10px;background:#fafafa}
 .finput:focus{outline:none;border-color:#a78bfa;background:#fff}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.modal-actions{display:flex;gap:10px;margin-top:4px}
-.btn-buy{flex:1;padding:12px;border-radius:12px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:#16a34a;color:#fff}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.paste-row{display:flex;gap:8px;margin-bottom:10px}
+.paste-input{flex:1;font-size:13px;padding:11px 12px;border:1.5px solid #e2e8f0;border-radius:11px;font-family:inherit;background:#fafafa}
+.paste-input:focus{outline:none;border-color:#a78bfa;background:#fff}
+.btn-fetch{background:#7c3aed;color:#fff;border:none;border-radius:11px;padding:11px 14px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.btn-fetch:disabled{background:#c4b5fd;cursor:not-allowed}
+.fetch-status{font-size:12px;color:#7c3aed;margin-bottom:8px;min-height:16px}
+.preview-row{display:flex;gap:10px;align-items:center;background:#f8f7ff;border-radius:11px;padding:10px;margin-bottom:10px}
+.preview-thumb{width:56px;height:56px;border-radius:9px;object-fit:cover;background:#e2e8f0;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden}
+.preview-info{flex:1;min-width:0}
+.preview-name{font-size:13px;font-weight:600;color:#1e293b;margin-bottom:2px}
+.preview-price{font-size:12px;color:#7c3aed}
+.mactions{display:flex;gap:8px;margin-top:4px}
+.btn-buy{flex:1;padding:12px;border-radius:11px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:#16a34a;color:#fff}
 .btn-buy.unbuy{background:#f1f5f9;color:#64748b}
-.btn-del{padding:12px 16px;border-radius:12px;border:1.5px solid #fca5a5;background:transparent;color:#ef4444;font-size:14px;cursor:pointer}
-
-/* Add item card */
-.card-add{border-radius:16px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.05);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;border:2px dashed #e2e8f0;transition:all .15s}
-.card-add:active{transform:scale(.97)}
-.card-add-icon{font-size:28px;opacity:.4}
-.card-add-label{font-size:12px;color:#94a3b8;font-weight:600}
-
-/* Section header */
-.sec-header{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 10px}
-.sec-title{font-size:15px;font-weight:700;color:#1e293b}
-.sec-count{font-size:12px;color:#94a3b8}
-
-/* Add item modal */
-.add-modal{background:#fff;border-radius:24px 24px 0 0;padding:20px 20px 40px;width:100%;max-width:480px}
-.add-modal input{width:100%;font-size:15px;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:12px;font-family:inherit;margin-bottom:12px}
-.add-modal input:focus{outline:none;border-color:#a78bfa}
-.btn-add-confirm{width:100%;padding:13px;border-radius:12px;border:none;font-size:15px;font-weight:700;cursor:pointer;background:#7c3aed;color:#fff}
-
+.btn-del{padding:12px 14px;border-radius:11px;border:1.5px solid #fca5a5;background:transparent;color:#ef4444;font-size:14px;cursor:pointer}
+.btn-save{width:100%;margin-top:8px;padding:13px;border-radius:11px;border:none;font-size:15px;font-weight:700;cursor:pointer;background:#7c3aed;color:#fff}
+.add-cat-input{width:100%;font-size:15px;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:12px;font-family:inherit;margin-bottom:12px}
+.add-cat-input:focus{outline:none;border-color:#a78bfa}
+.btn-addcat{width:100%;padding:13px;border-radius:12px;border:none;font-size:15px;font-weight:700;cursor:pointer;background:#7c3aed;color:#fff}
 .loading{text-align:center;padding:60px 20px;color:#94a3b8;font-size:14px}
 </style>
 </head>
 <body>
-
 <div id="root"><div class="loading">🍼 Loading...</div></div>
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -110,12 +98,12 @@ firebase.initializeApp({
   projectId:"nursery-prep-tracker",
   storageBucket:"nursery-prep-tracker.firebasestorage.app",
   messagingSenderId:"286961925725",
-  appId:"1:286961925725:web:f48b0482e44262659c57b4"
+  appId:"1:286961925241:web:f48b0482e44262659c57b4"
 });
 const db = firebase.database();
-const dbRef = db.ref("nursery2");
+const dbRef = db.ref("nursery3");
 
-const CATS = [
+const DEFAULT_CATS = [
   {id:"furniture",name:"Furniture",icon:"🛏️",color:"#D97706"},
   {id:"sleep",name:"Sleep",icon:"😴",color:"#7C3AED"},
   {id:"monitor",name:"Monitor",icon:"📷",color:"#2563EB"},
@@ -128,8 +116,8 @@ const CATS = [
 const DEFAULT_ITEMS = {
   furniture:[
     {id:"crib",name:"Crib",checked:false,notes:"",link:"",img:"",est:"",act:""},
-    {id:"bassinet",name:"Bassinet",checked:false,notes:"Get all-in-one with pad and sheets. ~3 months.",link:"",img:"",est:"",act:""},
-    {id:"dresser",name:"Changing Table / Dresser",checked:false,notes:"Wayfair solid wood 9 drawer",link:"https://www.wayfair.com/baby-kids/pdp/one-allium-way-551-w-100-solid-wood-9-drawer-changing-table-dresser-w117255370.html",img:"",est:"",act:""},
+    {id:"bassinet",name:"Bassinet",checked:false,notes:"Get all-in-one with pad and sheets.",link:"",img:"",est:"",act:""},
+    {id:"dresser",name:"Changing Table/Dresser",checked:false,notes:"Wayfair solid wood 9 drawer",link:"https://www.wayfair.com/baby-kids/pdp/one-allium-way-551-w-100-solid-wood-9-drawer-changing-table-dresser-w117255370.html",img:"",est:"",act:""},
     {id:"recliner",name:"Power Button Recliner",checked:false,notes:"ARM RESTS ARE A MUST.",link:"",img:"",est:"",act:""},
     {id:"side-table",name:"Side Table",checked:false,notes:"",link:"",img:"",est:"",act:""},
     {id:"acrylic-shelf",name:"Acrylic Shelf",checked:false,notes:"",link:"",img:"",est:"",act:""},
@@ -138,16 +126,16 @@ const DEFAULT_ITEMS = {
   ],
   sleep:[
     {id:"mattress",name:"Crib Mattress",checked:false,notes:"",link:"",img:"",est:"",act:""},
-    {id:"mprotect",name:"Mattress Protector",checked:false,notes:"Amazon / registry",link:"",img:"",est:"",act:""},
-    {id:"sheets",name:"Crib Sheets",checked:false,notes:"Amazon / registry",link:"",img:"",est:"",act:""},
-    {id:"sleepsack",name:"Sleep Sacks",checked:false,notes:"Safer than blankets - get multiple sizes",link:"",img:"",est:"",act:""},
+    {id:"mprotect",name:"Mattress Protector",checked:false,notes:"Amazon/registry",link:"",img:"",est:"",act:""},
+    {id:"sheets",name:"Crib Sheets",checked:false,notes:"Amazon/registry",link:"",img:"",est:"",act:""},
+    {id:"sleepsack",name:"Sleep Sacks",checked:false,notes:"Safer than blankets",link:"",img:"",est:"",act:""},
     {id:"sound",name:"Sound Machine",checked:false,notes:"Helps baby stay asleep longer",link:"",img:"",est:"",act:""},
-    {id:"nightlight",name:"Night Light - Hatch Tap",checked:false,notes:"Comforting ambience without overhead light.",link:"https://www.amazon.com/s?k=hatch+rest+tap",img:"",est:"",act:""},
+    {id:"nightlight",name:"Night Light - Hatch Tap",checked:false,notes:"",link:"https://www.amazon.com/s?k=hatch+rest+tap",img:"",est:"",act:""},
   ],
   monitor:[
     {id:"mon-home",name:"Baby Monitor (no WiFi)",checked:false,notes:"Closed circuit - more secure.",link:"",img:"",est:"",act:""},
     {id:"mon-travel",name:"Travel Monitor",checked:false,notes:"Closed circuit preferred",link:"",img:"",est:"",act:""},
-    {id:"owlet",name:"Owlet Smart Sock",checked:false,notes:"Tracks oxygen and heart rate while sleeping",link:"",img:"",est:"",act:""},
+    {id:"owlet",name:"Owlet Smart Sock",checked:false,notes:"Tracks oxygen + heart rate",link:"",img:"",est:"",act:""},
   ],
   feeding:[
     {id:"bottles",name:"Baby Bottles x6",checked:false,notes:"",link:"",img:"",est:"",act:""},
@@ -169,318 +157,436 @@ const DEFAULT_ITEMS = {
     {id:"outlet",name:"Outlet Covers",checked:false,notes:"",link:"",img:"",est:"",act:""},
   ],
   clothing:[
-    {id:"onesies",name:"Onesies NB + 0-3mo",checked:false,notes:"",link:"",img:"",est:"",act:""},
-    {id:"sleepers",name:"Sleepers / Footed PJs",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"onesies",name:"Onesies NB+0-3mo",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"sleepers",name:"Sleepers/Footed PJs",checked:false,notes:"",link:"",img:"",est:"",act:""},
     {id:"hats",name:"Newborn Hats & Mittens",checked:false,notes:"",link:"",img:"",est:"",act:""},
-    {id:"detergent",name:"Baby Laundry Detergent",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"detergent",name:"Baby Detergent",checked:false,notes:"",link:"",img:"",est:"",act:""},
   ],
 };
 
-// State
-let data = {};
+const ANTHROPIC_KEY = ""; // Leave blank — AI fetch uses a CORS proxy
+
+let state = {cats: DEFAULT_CATS, items: DEFAULT_ITEMS};
 let activeCat = "furniture";
-let editingItem = null; // {catId, item}
-let addingItem = null;  // catId
+let modal = null; // null | {type:'edit',catId,item} | {type:'add',catId} | {type:'addcat'}
 let loaded = false;
 
-// Load
-dbRef.once("value", function(snap) {
+dbRef.once("value", function(snap){
   var d = snap.val();
-  data = d || JSON.parse(JSON.stringify(DEFAULT_ITEMS));
-  if (!d) dbRef.set(data);
+  if (d) {
+    state.cats = d.cats || DEFAULT_CATS;
+    state.items = d.items || DEFAULT_ITEMS;
+  } else {
+    dbRef.set(state);
+  }
   loaded = true;
   render();
 });
-dbRef.on("value", function(snap) {
+dbRef.on("value", function(snap){
   var d = snap.val();
-  if (d && loaded) { data = d; render(); }
+  if (d && loaded) {
+    state.cats = d.cats || state.cats;
+    state.items = d.items || state.items;
+    render();
+  }
 });
 
-function save() { dbRef.set(data); }
+function save(){ dbRef.set(state); }
+function uid(){ return Math.random().toString(36).slice(2,9); }
+function esc(s){ return String(s||"").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function fm(n){ return n ? "$"+parseFloat(n).toLocaleString("en-US",{maximumFractionDigits:0}) : "—"; }
+function getCat(id){ return state.cats.find(function(c){return c.id===id;}) || {icon:"📦",color:"#64748B",name:id}; }
 
-function uid() { return Math.random().toString(36).slice(2,9); }
+// AI fetch product info from URL
+async function fetchProduct(url) {
+  // Use allorigins to bypass CORS, then Claude AI to parse
+  var proxyUrl = "https://api.allorigins.win/get?url=" + encodeURIComponent(url);
+  var resp = await fetch(proxyUrl);
+  var json = await resp.json();
+  var html = json.contents || "";
 
-function getImg(item) {
-  if (item.img) return item.img;
-  if (item.link) {
-    // Use Google favicon/screenshot as placeholder, or just return null to show emoji
-    return null;
+  // Extract og:image, og:title, price via regex
+  var title = "";
+  var img = "";
+  var price = "";
+
+  var titleM = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i)
+             || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:title["']/i);
+  if (titleM) title = titleM[1].trim();
+
+  var imgM = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
+           || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+  if (imgM) img = imgM[1].trim();
+
+  var priceM = html.match(/\$\s*([\d,]+(?:\.\d{2})?)/);
+  if (priceM) price = priceM[1].replace(/,/g,"");
+
+  // Clean up title (remove site name after | or -)
+  if (title) {
+    title = title.split(" | ")[0].split(" - ")[0].trim();
+    if (title.length > 60) title = title.substring(0,60) + "…";
   }
-  return null;
+
+  return {title: title || "", img: img || "", price: price || ""};
 }
 
-function catEmoji(catId) {
-  var c = CATS.find(function(x){return x.id===catId;});
-  return c ? c.icon : "📦";
-}
-function catColor(catId) {
-  var c = CATS.find(function(x){return x.id===catId;});
-  return c ? c.color : "#64748B";
-}
-function catName(catId) {
-  var c = CATS.find(function(x){return x.id===catId;});
-  return c ? c.name : catId;
-}
-
-function openEdit(catId, itemId) {
-  var items = data[catId] || [];
-  var item = items.find(function(i){return i.id===itemId;});
+function openAdd(catId){ modal = {type:"add", catId:catId, url:"", status:"", preview:null}; render(); }
+function openEdit(catId, itemId){
+  var item = (state.items[catId]||[]).find(function(i){return i.id===itemId;});
   if (!item) return;
-  editingItem = {catId: catId, item: JSON.parse(JSON.stringify(item))};
+  modal = {type:"edit", catId:catId, item: JSON.parse(JSON.stringify(item))};
   render();
 }
+function openAddCat(){ modal = {type:"addcat"}; render(); }
+function closeModal(){ modal = null; render(); }
 
-function closeEdit() { editingItem = null; render(); }
-
-function saveEdit() {
-  var e = editingItem;
-  data[e.catId] = (data[e.catId]||[]).map(function(i){
-    return i.id===e.item.id ? e.item : i;
-  });
-  save();
-  editingItem = null;
-  render();
-}
-
-function deleteItem(catId, itemId) {
-  data[catId] = (data[catId]||[]).filter(function(i){return i.id!==itemId;});
-  save(); editingItem = null; render();
-}
-
-function toggleCheck(catId, itemId) {
-  data[catId] = (data[catId]||[]).map(function(i){
+function toggleCheck(catId, itemId){
+  state.items[catId] = (state.items[catId]||[]).map(function(i){
     return i.id===itemId ? Object.assign({},i,{checked:!i.checked}) : i;
   });
   save(); render();
 }
-
-function addNewItem(catId, name) {
+function deleteItem(catId, itemId){
+  state.items[catId] = (state.items[catId]||[]).filter(function(i){return i.id!==itemId;});
+  save(); modal = null; render();
+}
+function saveEdit(){
+  var e = modal;
+  state.items[e.catId] = (state.items[e.catId]||[]).map(function(i){
+    return i.id===e.item.id ? e.item : i;
+  });
+  save(); modal = null; render();
+}
+function addItemFromPreview(catId, preview, url){
+  var item = {
+    id: uid(),
+    name: preview.title || "New item",
+    checked: false,
+    notes: "",
+    link: url,
+    img: preview.img || "",
+    est: preview.price || "",
+    act: ""
+  };
+  if (!state.items[catId]) state.items[catId] = [];
+  state.items[catId].push(item);
+  save(); modal = null; render();
+}
+function addCategory(name, icon){
   if (!name.trim()) return;
-  var item = {id:uid(),name:name.trim(),checked:false,notes:"",link:"",img:"",est:"",act:""};
-  data[catId] = (data[catId]||[]).concat([item]);
-  save(); addingItem = null; render();
+  var id = uid();
+  state.cats.push({id:id, name:name.trim(), icon:icon||"📦", color:"#7C3AED"});
+  state.items[id] = [];
+  activeCat = id;
+  save(); modal = null; render();
 }
 
-// ---- RENDER ----
-function render() {
+function render(){
   if (!loaded) return;
   var root = document.getElementById("root");
-
-  var allItems = [];
-  Object.keys(data).forEach(function(k){ allItems = allItems.concat(data[k]||[]); });
-  var tot = allItems.length;
-  var chk = allItems.filter(function(i){return i.checked;}).length;
+  var all = [];
+  state.cats.forEach(function(c){ all = all.concat(state.items[c.id]||[]); });
+  var tot = all.length, chk = all.filter(function(i){return i.checked;}).length;
   var pct = tot ? Math.round(chk/tot*100) : 0;
-  var est = allItems.reduce(function(s,i){return s+(parseFloat(i.est)||0);},0);
-  var act = allItems.filter(function(i){return i.act!=="";}).reduce(function(s,i){return s+(parseFloat(i.act)||0);},0);
-  var fm = function(n){return n?"$"+parseFloat(n).toLocaleString("en-US",{maximumFractionDigits:0}):"—";};
+  var est = all.reduce(function(s,i){return s+(parseFloat(i.est)||0);},0);
+  var act = all.filter(function(i){return i.act!=="";}).reduce(function(s,i){return s+(parseFloat(i.act)||0);},0);
 
-  var items = data[activeCat] || [];
-  var cat = CATS.find(function(c){return c.id===activeCat;}) || CATS[0];
+  var items = state.items[activeCat] || [];
+  var cat = getCat(activeCat);
+  var catChk = items.filter(function(i){return i.checked;}).length;
 
-  var html = "";
+  var h = "";
 
   // Hero
-  html += '<div class="hero">';
-  html += '<div class="hero-sub">Feldman Family</div>';
-  html += '<h1>Nursery Prep</h1>';
-  html += '<p>Baby boy &bull; October 2026 &#x1F476;</p>';
-  html += '<div class="pbar"><div class="pfill" style="width:'+pct+'%"></div></div>';
-  html += '<div class="plabel">'+pct+'% complete &middot; '+chk+'/'+tot+' items</div>';
-  html += '</div>';
+  h += '<div class="hero">';
+  h += '<div class="hero-sub">Feldman Family</div>';
+  h += '<h1>Nursery Prep</h1>';
+  h += '<p>Baby boy &bull; October 2026 &#x1F476;</p>';
+  h += '<div class="pbar"><div class="pfill" style="width:'+pct+'%"></div></div>';
+  h += '<div class="plabel">'+pct+'% &middot; '+chk+'/'+tot+' items</div>';
+  h += '</div>';
 
   // Budget
-  html += '<div class="budgets">';
-  html += '<div class="bcard"><div class="be">&#x1F4CB;</div><div class="bv">'+fm(est)+'</div><div class="bl">Estimated</div></div>';
-  html += '<div class="bcard"><div class="be">&#x1F4B3;</div><div class="bv">'+fm(act)+'</div><div class="bl">Spent</div></div>';
-  html += '<div class="bcard"><div class="be">&#x1F3AF;</div><div class="bv">'+(est?fm(Math.max(0,est-act)):"—")+'</div><div class="bl">Remaining</div></div>';
-  html += '<div class="bcard"><div class="be">&#x2705;</div><div class="bv">'+chk+'/'+tot+'</div><div class="bl">Bought</div></div>';
-  html += '</div>';
+  h += '<div class="budgets">';
+  h += '<div class="bc"><div class="be">&#x1F4CB;</div><div class="bv">'+fm(est)+'</div><div class="bl">Estimated</div></div>';
+  h += '<div class="bc"><div class="be">&#x1F4B3;</div><div class="bv">'+fm(act)+'</div><div class="bl">Spent</div></div>';
+  h += '<div class="bc"><div class="be">&#x1F3AF;</div><div class="bv">'+(est?fm(Math.max(0,est-act)):"—")+'</div><div class="bl">Remaining</div></div>';
+  h += '<div class="bc"><div class="be">&#x2705;</div><div class="bv">'+chk+'/'+tot+'</div><div class="bl">Bought</div></div>';
+  h += '</div>';
 
   // Share
-  html += '<div class="sharebar"><p>&#x1F48C; Share with Anna</p><button class="sharebtn" id="sharebtn">Copy link</button></div>';
-  html += '<div class="sharemsg" id="sharemsg">&#x2705; Link copied! Send it to Anna.</div>';
+  h += '<div class="sharebar"><p>&#x1F48C; Share with Anna</p><button class="sharebtn" id="sharebtn">Copy link</button></div>';
+  h += '<div class="sharemsg" id="sharemsg">&#x2705; Copied! Send to Anna.</div>';
 
   // Tabs
-  html += '<div class="tabs">';
-  CATS.forEach(function(c){
+  h += '<div class="tabs">';
+  state.cats.forEach(function(c){
     var active = c.id===activeCat;
-    html += '<div class="tab'+(active?" active":"")+'" data-tab="'+c.id+'" style="'+(active?"background:"+c.color+";color:#fff":"")+'">'+c.icon+' '+c.name+'</div>';
+    h += '<div class="tab'+(active?" active":"")+'" data-tab="'+c.id+'" style="'+(active?"background:"+c.color+";border-color:"+c.color:"")+'">'+c.icon+' '+c.name+'</div>';
   });
-  html += '</div>';
+  h += '<div class="tab-add" id="tab-addcat">+ Category</div>';
+  h += '</div>';
 
   // Section header
-  var catChk = items.filter(function(i){return i.checked;}).length;
-  html += '<div class="sec-header"><div class="sec-title">'+cat.icon+' '+cat.name+'</div><div class="sec-count">'+catChk+'/'+items.length+' bought</div></div>';
+  h += '<div class="sec-hdr"><div class="sec-title">'+cat.icon+' '+cat.name+'</div><div class="sec-count">'+catChk+'/'+items.length+' bought</div></div>';
 
   // Grid
-  html += '<div class="grid">';
+  h += '<div class="grid">';
   items.forEach(function(item){
-    var hasLink = !!item.link;
-    var hasImg = !!item.img;
-    html += '<div class="card'+(item.checked?" bought":"")+'" data-edit="'+activeCat+'|'+item.id+'">';
-    // Image or emoji
-    if (hasImg) {
-      html += '<img class="card-img" src="'+item.img+'" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\'" alt=""/>';
-      html += '<div class="card-emoji" style="display:none">'+catEmoji(activeCat)+'</div>';
+    h += '<div class="card'+(item.checked?" bought":"")+'" data-edit="'+activeCat+'|'+item.id+'">';
+    if (item.img) {
+      h += '<img class="card-img" src="'+esc(item.img)+'" onerror="this.style.display=\'none\'" alt=""/>';
+      h += '<div class="card-emoji" style="position:absolute;inset:0;display:none">'+cat.icon+'</div>';
     } else {
-      html += '<div class="card-emoji">'+catEmoji(activeCat)+'</div>';
+      h += '<div class="card-emoji">'+cat.icon+'</div>';
     }
-    html += '<div class="card-overlay"></div>';
-    // Link button (top left)
-    if (hasLink) {
-      html += '<a class="card-link has-link" href="'+item.link+'" target="_blank" data-extlink="1" title="Open link">&#x1F517;</a>';
-    } else {
-      html += '<div class="card-link" data-edit="'+activeCat+'|'+item.id+'" title="Add link">&#x1F517;</div>';
+    h += '<div class="card-overlay"></div>';
+    if (item.link) {
+      h += '<a class="card-link" href="'+esc(item.link)+'" target="_blank" data-ext="1">&#x1F517;</a>';
     }
-    // Check (top right)
-    html += '<div class="card-check'+(item.checked?" done":"")+'" data-check="'+activeCat+'|'+item.id+'">'+(item.checked?"&#x2713;":"")+'</div>';
-    // Notes indicator
-    if (item.notes) html += '<div class="card-notes">&#x1F4DD;</div>';
-    // Bottom info
-    html += '<div class="card-bottom">';
-    html += '<div class="card-name">'+item.name+'</div>';
-    if (item.est) html += '<div class="card-price">$'+(parseFloat(item.est)||0)+'</div>';
-    html += '</div>';
-    html += '</div>';
+    h += '<div class="card-check'+(item.checked?" done":"")+'" data-chk="'+activeCat+'|'+item.id+'">'+(item.checked?"&#x2713;":"")+'</div>';
+    h += '<div class="card-bottom">';
+    h += '<div class="card-name">'+esc(item.name)+'</div>';
+    if (item.est) h += '<div class="card-price">&dollar;'+(parseFloat(item.est)||0)+'</div>';
+    h += '</div></div>';
   });
 
   // Add card
-  html += '<div class="card-add" id="addcard"><div class="card-add-icon">+</div><div class="card-add-label">Add item</div></div>';
-  html += '</div>'; // grid
+  h += '<div class="card-add" id="addcard"><div class="card-add-icon">+</div><div class="card-add-lbl">Paste a link</div></div>';
+  h += '</div>'; // grid
 
-  // Edit modal
-  if (editingItem) {
-    var ei = editingItem.item;
-    var ec = editingItem.catId;
-    html += '<div class="modal-bg" id="modalbg">';
-    html += '<div class="modal">';
-    html += '<div class="modal-handle"></div>';
-    html += '<div class="modal-title">'+ei.name+'</div>';
-    html += '<div class="modal-cat">'+catName(ec)+'</div>';
-    // Thumb + hint
-    html += '<div class="modal-img-row">';
-    html += '<div class="modal-thumb" id="modal-thumb">';
-    if (ei.img) {
-      html += '<img src="'+ei.img+'" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML=\''+catEmoji(ec)+'\'"/>';
+  // ---- MODALS ----
+
+  // ADD item modal (paste link)
+  if (modal && modal.type==="add") {
+    var m = modal;
+    h += '<div class="mbg" id="mbg">';
+    h += '<div class="msheet">';
+    h += '<div class="mhandle"></div>';
+    h += '<div class="mtitle">Add an item</div>';
+    h += '<div class="msub">'+cat.icon+' '+cat.name+' &mdash; paste any product link below</div>';
+
+    h += '<div class="paste-row">';
+    h += '<input class="paste-input" id="paste-url" type="url" placeholder="Paste Amazon, Wayfair, Target link..." value="'+esc(m.url||"")+'"/>';
+    h += '<button class="btn-fetch" id="btn-fetch"'+(m.fetching?" disabled":"")+'>'+( m.fetching?"&#x23F3;":"Go")+'</button>';
+    h += '</div>';
+    h += '<div class="fetch-status" id="fetch-status">'+esc(m.status||"")+'</div>';
+
+    if (m.preview) {
+      var p = m.preview;
+      h += '<div class="preview-row">';
+      if (p.img) {
+        h += '<div class="preview-thumb"><img src="'+esc(p.img)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML=\''+cat.icon+'\'"/></div>';
+      } else {
+        h += '<div class="preview-thumb">'+cat.icon+'</div>';
+      }
+      h += '<div class="preview-info">';
+      h += '<div class="preview-name" id="preview-name-display">'+esc(p.title||"Unknown item")+'</div>';
+      h += '<div class="preview-price">'+(p.price?"$"+p.price:"No price found")+'</div>';
+      h += '</div></div>';
+      h += '<label class="flabel">Edit name (optional)</label>';
+      h += '<input class="finput" id="ei-name" type="text" value="'+esc(p.title||"")+'" placeholder="Item name"/>';
+      h += '<button class="btn-save" id="btn-addconfirm">Add to '+cat.name+' &#x2192;</button>';
     } else {
-      html += catEmoji(ec);
+      h += '<div style="text-align:center;padding:20px 0;color:#94a3b8;font-size:13px">Or add manually:</div>';
+      h += '<label class="flabel">Item name</label>';
+      h += '<input class="finput" id="ei-name" type="text" placeholder="Item name"/>';
+      h += '<button class="btn-save" id="btn-addmanual">Add item</button>';
     }
-    html += '</div>';
-    html += '<div class="modal-img-hint">Paste a product link below and tap "Save" — or paste a direct image URL in the Image field to show a photo on the card.</div>';
-    html += '</div>';
-
-    html += '<label class="flabel">Item name</label>';
-    html += '<input class="finput" id="ei-name" type="text" value="'+_esc(ei.name)+'" placeholder="Item name"/>';
-
-    html += '<label class="flabel">Product link (Amazon, Wayfair, etc.)</label>';
-    html += '<input class="finput" id="ei-link" type="url" value="'+_esc(ei.link)+'" placeholder="https://..."/>';
-
-    html += '<label class="flabel">Image URL (optional — for photo on card)</label>';
-    html += '<input class="finput" id="ei-img" type="url" value="'+_esc(ei.img)+'" placeholder="https://...image.jpg"/>';
-
-    html += '<div class="frow">';
-    html += '<div><label class="flabel">Estimated ($)</label><input class="finput" id="ei-est" type="number" value="'+_esc(ei.est)+'" placeholder="0"/></div>';
-    html += '<div><label class="flabel">Actual ($)</label><input class="finput" id="ei-act" type="number" value="'+_esc(ei.act)+'" placeholder="0"/></div>';
-    html += '</div>';
-
-    html += '<label class="flabel">Notes</label>';
-    html += '<input class="finput" id="ei-notes" type="text" value="'+_esc(ei.notes)+'" placeholder="Any notes..."/>';
-
-    html += '<div class="modal-actions">';
-    html += '<button class="btn-buy'+(ei.checked?" unbuy":"")+'" id="btn-toggle">'+(ei.checked?"&#x2713; Bought":"Mark as bought")+'</button>';
-    html += '<button class="btn-del" id="btn-del">&#x1F5D1;</button>';
-    html += '</div>';
-    html += '<button style="width:100%;margin-top:10px;padding:13px;border-radius:12px;border:none;font-size:15px;font-weight:700;cursor:pointer;background:#7c3aed;color:#fff" id="btn-save">Save</button>';
-    html += '</div></div>';
+    h += '</div></div>';
   }
 
-  // Add item modal
-  if (addingItem) {
-    html += '<div class="modal-bg" id="addbg">';
-    html += '<div class="add-modal">';
-    html += '<div class="modal-handle"></div>';
-    html += '<div class="modal-title" style="margin-bottom:14px">Add item to '+catName(addingItem)+'</div>';
-    html += '<input id="addname" type="text" placeholder="Item name..." style="width:100%;font-size:15px;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:12px;font-family:inherit;margin-bottom:12px"/>';
-    html += '<button class="btn-add-confirm" id="btn-addconfirm">Add item</button>';
-    html += '</div></div>';
+  // EDIT item modal
+  if (modal && modal.type==="edit") {
+    var ei = modal.item;
+    var ec = modal.catId;
+    var ecat = getCat(ec);
+    h += '<div class="mbg" id="mbg">';
+    h += '<div class="msheet">';
+    h += '<div class="mhandle"></div>';
+    h += '<div class="mtitle">Edit item</div>';
+    h += '<div class="msub">'+ecat.icon+' '+ecat.name+'</div>';
+
+    // Preview thumb
+    if (ei.img || ei.link) {
+      h += '<div class="preview-row">';
+      h += '<div class="preview-thumb">';
+      if (ei.img) h += '<img src="'+esc(ei.img)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML=\''+ecat.icon+'\'"/>';
+      else h += ecat.icon;
+      h += '</div>';
+      h += '<div class="preview-info">';
+      h += '<div class="preview-name">'+esc(ei.name)+'</div>';
+      if (ei.link) h += '<a href="'+esc(ei.link)+'" target="_blank" style="font-size:11px;color:#7c3aed">Open product link &#x2197;</a>';
+      h += '</div></div>';
+    }
+
+    h += '<label class="flabel">Name</label>';
+    h += '<input class="finput" id="ei-name" type="text" value="'+esc(ei.name)+'" placeholder="Item name"/>';
+    h += '<label class="flabel">Product link</label>';
+    h += '<input class="finput" id="ei-link" type="url" value="'+esc(ei.link)+'" placeholder="https://..."/>';
+    h += '<label class="flabel">Image URL (for photo on card)</label>';
+    h += '<input class="finput" id="ei-img" type="url" value="'+esc(ei.img)+'" placeholder="https://...image.jpg"/>';
+    h += '<div class="frow">';
+    h += '<div><label class="flabel">Estimated ($)</label><input class="finput" id="ei-est" type="number" value="'+esc(ei.est)+'" placeholder="0"/></div>';
+    h += '<div><label class="flabel">Actual ($)</label><input class="finput" id="ei-act" type="number" value="'+esc(ei.act)+'" placeholder="0"/></div>';
+    h += '</div>';
+    h += '<label class="flabel">Notes</label>';
+    h += '<input class="finput" id="ei-notes" type="text" value="'+esc(ei.notes)+'" placeholder="Any notes..."/>';
+    h += '<div class="mactions">';
+    h += '<button class="btn-buy'+(ei.checked?" unbuy":"")+'" id="btn-toggle">'+(ei.checked?"&#x2713; Bought":"Mark as bought")+'</button>';
+    h += '<button class="btn-del" id="btn-del">&#x1F5D1;</button>';
+    h += '</div>';
+    h += '<button class="btn-save" id="btn-save">Save</button>';
+    h += '</div></div>';
   }
 
-  root.innerHTML = html;
+  // ADD CATEGORY modal
+  if (modal && modal.type==="addcat") {
+    h += '<div class="mbg" id="mbg">';
+    h += '<div class="msheet">';
+    h += '<div class="mhandle"></div>';
+    h += '<div class="mtitle">Add a category</div>';
+    h += '<div class="msub" style="margin-bottom:14px">Give it a name and pick an emoji</div>';
+    h += '<label class="flabel">Category name</label>';
+    h += '<input class="add-cat-input" id="cat-name" type="text" placeholder="e.g. Toys, Gear, Hospital Bag..."/>';
+    h += '<label class="flabel">Emoji icon</label>';
+    h += '<input class="add-cat-input" id="cat-icon" type="text" placeholder="e.g. 🧸" maxlength="4"/>';
+    h += '<button class="btn-addcat" id="btn-addcat">Add category</button>';
+    h += '</div></div>';
+  }
 
-  // Events
+  root.innerHTML = h;
+
+  // --- BIND EVENTS ---
+
   document.getElementById("sharebtn").onclick = function(){
     navigator.clipboard.writeText(window.location.href).catch(function(){});
     var m = document.getElementById("sharemsg");
-    m.style.display = "block";
-    setTimeout(function(){m.style.display="none";}, 2500);
+    m.style.display="block";
+    setTimeout(function(){m.style.display="none";},2500);
   };
 
   document.querySelectorAll(".tab").forEach(function(el){
     el.onclick = function(){ activeCat = el.dataset.tab; render(); };
   });
 
+  var tabAddCat = document.getElementById("tab-addcat");
+  if (tabAddCat) tabAddCat.onclick = openAddCat;
+
   document.querySelectorAll(".card[data-edit]").forEach(function(el){
     el.onclick = function(e){
-      if (e.target.closest("[data-extlink]") || e.target.closest(".card-check")) return;
-      var parts = el.dataset.edit.split("|");
-      openEdit(parts[0], parts[1]);
+      if (e.target.closest("[data-ext]") || e.target.closest("[data-chk]")) return;
+      var p = el.dataset.edit.split("|");
+      openEdit(p[0], p[1]);
     };
   });
 
-  document.querySelectorAll(".card-check").forEach(function(el){
+  document.querySelectorAll("[data-chk]").forEach(function(el){
     el.onclick = function(e){
       e.stopPropagation();
-      var parts = el.dataset.check.split("|");
-      toggleCheck(parts[0], parts[1]);
+      var p = el.dataset.chk.split("|");
+      toggleCheck(p[0], p[1]);
     };
   });
 
   var addcard = document.getElementById("addcard");
-  if (addcard) addcard.onclick = function(){ addingItem = activeCat; render(); };
+  if (addcard) addcard.onclick = function(){ openAdd(activeCat); };
 
-  // Edit modal events
-  if (editingItem) {
-    document.getElementById("modalbg").onclick = function(e){
-      if (e.target.id==="modalbg") closeEdit();
+  // Modal background close
+  var mbg = document.getElementById("mbg");
+  if (mbg) mbg.onclick = function(e){ if(e.target.id==="mbg") closeModal(); };
+
+  // ADD modal events
+  if (modal && modal.type==="add") {
+    var pasteUrl = document.getElementById("paste-url");
+    var btnFetch = document.getElementById("btn-fetch");
+    var fetchStatus = document.getElementById("fetch-status");
+
+    if (pasteUrl) pasteUrl.focus();
+
+    if (btnFetch) btnFetch.onclick = async function(){
+      var url = document.getElementById("paste-url").value.trim();
+      if (!url) return;
+      modal.url = url;
+      modal.fetching = true;
+      modal.status = "🔍 Reading product page...";
+      modal.preview = null;
+      render();
+      try {
+        var result = await fetchProduct(url);
+        modal.fetching = false;
+        if (result.title || result.img) {
+          modal.preview = result;
+          modal.status = "";
+        } else {
+          modal.status = "Couldn't auto-fill — enter the name below manually.";
+        }
+      } catch(err) {
+        modal.fetching = false;
+        modal.status = "Couldn't read that page — enter the name manually below.";
+      }
+      render();
     };
-    document.getElementById("btn-save").onclick = function(){
-      editingItem.item.name = document.getElementById("ei-name").value || editingItem.item.name;
-      editingItem.item.link = document.getElementById("ei-link").value;
-      editingItem.item.img  = document.getElementById("ei-img").value;
-      editingItem.item.est  = document.getElementById("ei-est").value;
-      editingItem.item.act  = document.getElementById("ei-act").value;
-      editingItem.item.notes= document.getElementById("ei-notes").value;
-      saveEdit();
+
+    if (pasteUrl) pasteUrl.onkeydown = function(e){
+      if (e.key==="Enter" && btnFetch) btnFetch.click();
     };
-    document.getElementById("btn-toggle").onclick = function(){
-      editingItem.item.checked = !editingItem.item.checked;
-      document.getElementById("btn-toggle").textContent = editingItem.item.checked ? "✓ Bought" : "Mark as bought";
-      document.getElementById("btn-toggle").className = "btn-buy" + (editingItem.item.checked?" unbuy":"");
+
+    var btnAddConfirm = document.getElementById("btn-addconfirm");
+    if (btnAddConfirm) btnAddConfirm.onclick = function(){
+      var name = document.getElementById("ei-name").value.trim() || (modal.preview && modal.preview.title) || "New item";
+      var prev = modal.preview || {};
+      if (name) prev.title = name;
+      addItemFromPreview(modal.catId, prev, modal.url);
     };
-    document.getElementById("btn-del").onclick = function(){
-      if (confirm("Remove this item?")) deleteItem(editingItem.catId, editingItem.item.id);
+
+    var btnAddManual = document.getElementById("btn-addmanual");
+    if (btnAddManual) btnAddManual.onclick = function(){
+      var name = document.getElementById("ei-name").value.trim();
+      if (!name) return;
+      addItemFromPreview(modal.catId, {title:name, img:"", price:""}, modal.url||"");
     };
   }
 
-  // Add modal events
-  if (addingItem) {
-    document.getElementById("addbg").onclick = function(e){
-      if (e.target.id==="addbg"){ addingItem=null; render(); }
+  // EDIT modal events
+  if (modal && modal.type==="edit") {
+    var btnSave = document.getElementById("btn-save");
+    if (btnSave) btnSave.onclick = function(){
+      modal.item.name  = document.getElementById("ei-name").value || modal.item.name;
+      modal.item.link  = document.getElementById("ei-link").value;
+      modal.item.img   = document.getElementById("ei-img").value;
+      modal.item.est   = document.getElementById("ei-est").value;
+      modal.item.act   = document.getElementById("ei-act").value;
+      modal.item.notes = document.getElementById("ei-notes").value;
+      saveEdit();
     };
-    var addname = document.getElementById("addname");
-    addname.focus();
-    addname.onkeydown = function(e){
-      if (e.key==="Enter") document.getElementById("btn-addconfirm").click();
-      if (e.key==="Escape"){ addingItem=null; render(); }
+    var btnToggle = document.getElementById("btn-toggle");
+    if (btnToggle) btnToggle.onclick = function(){
+      modal.item.checked = !modal.item.checked;
+      btnToggle.className = "btn-buy"+(modal.item.checked?" unbuy":"");
+      btnToggle.innerHTML = modal.item.checked ? "&#x2713; Bought" : "Mark as bought";
     };
-    document.getElementById("btn-addconfirm").onclick = function(){
-      addNewItem(addingItem, document.getElementById("addname").value);
+    var btnDel = document.getElementById("btn-del");
+    if (btnDel) btnDel.onclick = function(){
+      if (confirm("Remove this item?")) deleteItem(modal.catId, modal.item.id);
+    };
+  }
+
+  // ADD CATEGORY modal events
+  if (modal && modal.type==="addcat") {
+    var catNameEl = document.getElementById("cat-name");
+    if (catNameEl) catNameEl.focus();
+    var btnAddCat = document.getElementById("btn-addcat");
+    if (btnAddCat) btnAddCat.onclick = function(){
+      var name = document.getElementById("cat-name").value;
+      var icon = document.getElementById("cat-icon").value || "📦";
+      addCategory(name, icon);
+    };
+    if (catNameEl) catNameEl.onkeydown = function(e){
+      if (e.key==="Enter" && btnAddCat) btnAddCat.click();
     };
   }
 }
-
-function _esc(s){ return String(s||"").replace(/"/g,"&quot;"); }
 </script>
 </body>
 </html>
