@@ -6,133 +6,103 @@
 <title>Nursery Prep Tracker</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f7ff;padding-bottom:60px}
-#status{padding:20px;text-align:center;font-size:13px;color:#7c3aed}
-.hero{background:linear-gradient(135deg,#fdf2f8,#ede9fe,#dbeafe);padding:24px 20px 20px;position:relative;overflow:hidden}
-.hero::after{content:'🍼';position:absolute;top:-10px;right:12px;font-size:72px;opacity:.12;transform:rotate(15deg)}
-.hero-label{font-size:11px;font-weight:600;letter-spacing:.08em;color:#9333ea;text-transform:uppercase;margin-bottom:2px}
-.hero h1{font-size:22px;font-weight:600;color:#1e1b4b;margin-bottom:2px}
-.hero p{font-size:13px;color:#6d28d9;margin-bottom:14px}
-.progress-bar{height:8px;background:rgba(255,255,255,.6);border-radius:999px;overflow:hidden}
-.progress-fill{height:100%;background:linear-gradient(90deg,#a78bfa,#60a5fa);border-radius:999px;transition:width .4s}
-.prog-label{font-size:11px;color:#7c3aed;margin-top:4px}
-.wrap{padding:14px}
-.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.bc{border-radius:14px;padding:12px 14px}
-.bc .e{font-size:18px}.bc .v{font-size:20px;font-weight:600;margin:2px 0}.bc .l{font-size:11px;opacity:.7}
-.sharebox{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:14px;margin-bottom:14px}
-.sharebox h3{font-size:13px;font-weight:600;color:#14532d}
-.sharebox p{font-size:11px;color:#166534;margin:2px 0 8px}
-.srow{display:flex;gap:8px}
-.surl{flex:1;font-size:11px;padding:7px 8px;border:1px solid #bbf7d0;border-radius:10px;background:#fff;color:#14532d;font-family:monospace}
-.sbtn{background:#16a34a;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer}
-.smsg{font-size:11px;color:#166534;margin-top:5px;display:none}
-.cat{border-radius:16px;overflow:hidden;margin-bottom:12px}
-.cath{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;user-select:none}
-.cati{font-size:20px}.catn{font-size:14px;font-weight:600;color:#1e293b;margin-bottom:3px}
-.catprow{display:flex;align-items:center;gap:6px}
-.catbar{flex:1;height:4px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.6)}
-.catfill{height:100%;border-radius:999px;transition:width .3s}
-.catct{font-size:11px;font-weight:600}
-.catbody{background:#fff;display:none}.catbody.open{display:block}
-.irow{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:.5px solid #f1f5f9;cursor:pointer}
-.cb{width:20px;height:20px;border-radius:6px;border:2px solid #cbd5e1;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#fff;cursor:pointer}
-.iname{flex:1;font-size:13px;color:#1e293b}.iname.done{color:#94a3b8;text-decoration:line-through}
-.imeta{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.pbadge{font-size:11px;padding:1px 6px;border-radius:20px;font-weight:600}
-.idet{background:#fafafa;padding:10px 14px 12px 42px;display:none;border-bottom:.5px solid #f1f5f9}
-.idet.open{display:block}
-.nbox{font-size:12px;color:#475569;padding:5px 8px;border-radius:7px;margin-bottom:7px;border-left:3px solid #ccc}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
-.fi label,.ff label{font-size:11px;color:#64748b;display:block;margin-bottom:2px}
-.fi input,.ff input{width:100%;font-size:12px;padding:4px 7px;border:1px solid #e2e8f0;border-radius:7px;font-family:inherit}
-.ff{margin-bottom:6px}
-.bdel{font-size:11px;color:#ef4444;border:1px solid #fca5a5;background:transparent;padding:3px 8px;cursor:pointer;border-radius:7px;margin-top:3px}
-.addrow{padding:9px 14px;border-top:.5px solid #f1f5f9;display:flex;align-items:center;gap:6px}
-.addibtn{font-size:12px;font-weight:600;border:none;background:transparent;cursor:pointer}
-.addinput{flex:1;font-size:12px;padding:4px 7px;border:1px solid #e2e8f0;border-radius:7px}
-.bsm{font-size:11px;padding:4px 10px;border-radius:7px;cursor:pointer;border:1px solid #e2e8f0;background:#fff}
-.bsm.p{color:#fff;border:none}
-.remcat{font-size:10px;color:#94a3b8;border:none;background:transparent;cursor:pointer;padding:3px 14px 8px;display:block;margin-left:auto}
-.addcatbtn{width:100%;font-size:13px;font-weight:600;color:#7c3aed;background:#faf5ff;border:1.5px dashed #c4b5fd;border-radius:14px;padding:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;margin-top:4px}
-.addcatrow{display:flex;gap:7px;margin-top:4px}
-.addcatin{flex:1;font-size:13px;padding:7px 10px;border:1px solid #e2e8f0;border-radius:10px}
-.syncst{text-align:center;font-size:11px;color:#cbd5e1;margin-top:18px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#faf8ff;min-height:100vh;padding-bottom:80px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#fdf2f8,#ede9fe,#dbeafe);padding:20px 16px 16px;position:relative;overflow:hidden}
+.hero::after{content:'🍼';position:absolute;top:-8px;right:10px;font-size:64px;opacity:.13;transform:rotate(15deg);pointer-events:none}
+.hero-sub{font-size:10px;font-weight:700;letter-spacing:.1em;color:#9333ea;text-transform:uppercase;margin-bottom:1px}
+.hero h1{font-size:20px;font-weight:700;color:#1e1b4b;margin-bottom:1px}
+.hero p{font-size:12px;color:#7c3aed;margin-bottom:12px}
+.pbar{height:7px;background:rgba(255,255,255,.55);border-radius:999px;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,#a78bfa,#60a5fa);border-radius:999px;transition:width .4s}
+.plabel{font-size:10px;color:#7c3aed;margin-top:3px}
+
+/* Budget strip */
+.budgets{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;scrollbar-width:none}
+.budgets::-webkit-scrollbar{display:none}
+.bcard{flex-shrink:0;background:#fff;border-radius:12px;padding:10px 14px;min-width:100px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.bcard .be{font-size:16px;margin-bottom:2px}
+.bcard .bv{font-size:17px;font-weight:700;color:#1e293b}
+.bcard .bl{font-size:10px;color:#94a3b8;margin-top:1px}
+
+/* Share bar */
+.sharebar{margin:0 16px 12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px}
+.sharebar p{flex:1;font-size:12px;color:#166534;font-weight:500}
+.sharebtn{background:#16a34a;color:#fff;border:none;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.sharemsg{font-size:11px;color:#166534;margin:0 16px 8px;display:none}
+
+/* Category tabs */
+.tabs{display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:2px solid transparent;background:#fff;color:#64748b;transition:all .15s}
+.tab.active{color:#fff;border-color:transparent}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 16px}
+
+/* Item card */
+.card{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.07);position:relative;aspect-ratio:1;cursor:pointer;transition:transform .15s}
+.card:active{transform:scale(.97)}
+.card-img{width:100%;height:100%;object-fit:cover;display:block;background:#f1f5f9}
+.card-emoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:52px;background:linear-gradient(135deg,#f8fafc,#f1f5f9)}
+.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,rgba(0,0,0,.1) 55%,transparent 100%)}
+.card-bottom{position:absolute;bottom:0;left:0;right:0;padding:8px 10px}
+.card-name{font-size:12px;font-weight:600;color:#fff;line-height:1.3;text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.card-price{font-size:11px;color:rgba(255,255,255,.85);margin-top:1px}
+.card-check{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.25);border:2px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;transition:all .15s}
+.card-check.done{background:#16a34a;border-color:#16a34a}
+.card-link{position:absolute;top:8px;left:8px;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.25);border:2px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;text-decoration:none}
+.card-link.has-link{background:rgba(99,102,241,.7);border-color:rgba(99,102,241,.9)}
+.card.bought .card-overlay{background:linear-gradient(to top,rgba(22,163,74,.7) 0%,rgba(22,163,74,.2) 55%,transparent 100%)}
+.card-notes{position:absolute;bottom:36px;right:8px;font-size:16px;opacity:.8}
+
+/* Edit modal */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;display:flex;align-items:flex-end;justify-content:center}
+.modal{background:#fff;border-radius:24px 24px 0 0;padding:20px 20px 40px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto}
+.modal-handle{width:36px;height:4px;background:#e2e8f0;border-radius:999px;margin:0 auto 16px}
+.modal-title{font-size:16px;font-weight:700;color:#1e293b;margin-bottom:4px}
+.modal-cat{font-size:11px;color:#94a3b8;margin-bottom:16px}
+.modal-img-row{display:flex;gap:12px;align-items:center;margin-bottom:16px}
+.modal-thumb{width:64px;height:64px;border-radius:12px;object-fit:cover;background:#f1f5f9;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;overflow:hidden}
+.modal-thumb img{width:100%;height:100%;object-fit:cover}
+.modal-img-hint{font-size:12px;color:#64748b;line-height:1.5}
+.flabel{font-size:11px;font-weight:600;color:#64748b;margin-bottom:4px;display:block}
+.finput{width:100%;font-size:14px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;font-family:inherit;margin-bottom:12px;background:#fafafa}
+.finput:focus{outline:none;border-color:#a78bfa;background:#fff}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-actions{display:flex;gap:10px;margin-top:4px}
+.btn-buy{flex:1;padding:12px;border-radius:12px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:#16a34a;color:#fff}
+.btn-buy.unbuy{background:#f1f5f9;color:#64748b}
+.btn-del{padding:12px 16px;border-radius:12px;border:1.5px solid #fca5a5;background:transparent;color:#ef4444;font-size:14px;cursor:pointer}
+
+/* Add item card */
+.card-add{border-radius:16px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.05);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;border:2px dashed #e2e8f0;transition:all .15s}
+.card-add:active{transform:scale(.97)}
+.card-add-icon{font-size:28px;opacity:.4}
+.card-add-label{font-size:12px;color:#94a3b8;font-weight:600}
+
+/* Section header */
+.sec-header{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 10px}
+.sec-title{font-size:15px;font-weight:700;color:#1e293b}
+.sec-count{font-size:12px;color:#94a3b8}
+
+/* Add item modal */
+.add-modal{background:#fff;border-radius:24px 24px 0 0;padding:20px 20px 40px;width:100%;max-width:480px}
+.add-modal input{width:100%;font-size:15px;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:12px;font-family:inherit;margin-bottom:12px}
+.add-modal input:focus{outline:none;border-color:#a78bfa}
+.btn-add-confirm{width:100%;padding:13px;border-radius:12px;border:none;font-size:15px;font-weight:700;cursor:pointer;background:#7c3aed;color:#fff}
+
+.loading{text-align:center;padding:60px 20px;color:#94a3b8;font-size:14px}
 </style>
 </head>
 <body>
-<div id="status">🍼 Connecting to Firebase...</div>
-<div id="app" style="display:none"></div>
+
+<div id="root"><div class="loading">🍼 Loading...</div></div>
+
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
-const COLORS={
-  furniture:{bg:"#FEF3C7",ac:"#D97706",li:"#FDE68A"},
-  sleep:{bg:"#EDE9FE",ac:"#7C3AED",li:"#DDD6FE"},
-  monitor:{bg:"#DBEAFE",ac:"#2563EB",li:"#BFDBFE"},
-  feeding:{bg:"#FCE7F3",ac:"#DB2777",li:"#FBCFE8"},
-  bathing:{bg:"#CFFAFE",ac:"#0891B2",li:"#A5F3FC"},
-  health:{bg:"#DCFCE7",ac:"#16A34A",li:"#BBF7D0"},
-  clothing:{bg:"#FFE4E6",ac:"#E11D48",li:"#FECDD3"},
-};
-const gc=id=>COLORS[id]||{bg:"#F1F5F9",ac:"#64748B",li:"#E2E8F0"};
-const uid=()=>Math.random().toString(36).slice(2,9);
-const fm=n=>n?"$"+parseFloat(n).toLocaleString("en-US",{maximumFractionDigits:0}):"—";
-const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-
-const DEFAULT=[
-  {id:"furniture",name:"Furniture",icon:"🛏️",items:[
-    {id:"crib",name:"Crib",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"bassinet",name:"Bassinet (bedside, ~3 months)",checked:false,notes:"Get all-in-one with pad and sheets.",link:"",est:"",act:""},
-    {id:"changing-table",name:"Changing table / dresser",checked:false,notes:"Wayfair solid wood 9 drawer",link:"https://www.wayfair.com/baby-kids/pdp/one-allium-way-551-w-100-solid-wood-9-drawer-changing-table-dresser-w117255370.html",est:"",act:""},
-    {id:"recliner",name:"Power button recliner",checked:false,notes:"ARM RESTS ARE A MUST. Great for feeding, rocking, reading.",link:"",est:"",act:""},
-    {id:"side-table",name:"Side table",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"acrylic-shelf",name:"Acrylic shelf",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"rug",name:"Mat / rug",checked:false,notes:"House of Noa Tumbling Mat - Bluebell",link:"https://www.thehouseofnoa.com/products/tumbling-mat-bluebell?variant=41686954901551",est:"",act:""},
-    {id:"utility-cart",name:"Utility cart",checked:false,notes:"Postpartum station: breast pads, trail mix, water bottle, burp cloths, diapers, puppy pee pads.",link:"",est:"",act:""},
-  ]},
-  {id:"sleep",name:"Sleep",icon:"😴",items:[
-    {id:"mattress",name:"Crib mattress",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"mprotect",name:"Mattress protector",checked:false,notes:"Amazon / registry",link:"",est:"",act:""},
-    {id:"sheets",name:"Crib sheets",checked:false,notes:"Amazon / registry",link:"",est:"",act:""},
-    {id:"sleepsack",name:"Sleep sacks",checked:false,notes:"Safer than blankets - get multiple sizes",link:"",est:"",act:""},
-    {id:"sound",name:"Sound machine",checked:false,notes:"Helps baby stay asleep longer",link:"",est:"",act:""},
-    {id:"nightlight",name:"Night light - Hatch Tap",checked:false,notes:"Comforting ambience without overhead light.",link:"https://www.amazon.com/s?k=hatch+rest+tap",est:"",act:""},
-  ]},
-  {id:"monitor",name:"Monitor",icon:"📷",items:[
-    {id:"mon-home",name:"Baby monitor - no WiFi (home)",checked:false,notes:"Closed circuit - more secure.",link:"",est:"",act:""},
-    {id:"mon-travel",name:"Travel monitor",checked:false,notes:"Closed circuit preferred",link:"",est:"",act:""},
-    {id:"owlet",name:"Owlet smart sock",checked:false,notes:"Tracks oxygen and heart rate while sleeping",link:"",est:"",act:""},
-  ]},
-  {id:"feeding",name:"Feeding",icon:"🍼",items:[
-    {id:"bottles",name:"Baby bottles x6",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"pump",name:"Breast pump",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"nursing",name:"Nursing pillow",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"sterilizer",name:"Bottle sterilizer",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"bibs",name:"Burp cloths and bibs",checked:false,notes:"",link:"",est:"",act:""},
-  ]},
-  {id:"bathing",name:"Bathing",icon:"🛁",items:[
-    {id:"tub",name:"Baby bathtub",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"towels",name:"Hooded towels x3",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"wash",name:"Baby wash and shampoo",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"lotion",name:"Baby lotion",checked:false,notes:"",link:"",est:"",act:""},
-  ]},
-  {id:"health",name:"Health and Safety",icon:"🏥",items:[
-    {id:"therm",name:"Rectal thermometer",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"nasal",name:"Nasal aspirator (Frida)",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"firstaid",name:"Baby first aid kit",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"outlet",name:"Outlet covers",checked:false,notes:"",link:"",est:"",act:""},
-  ]},
-  {id:"clothing",name:"Clothing",icon:"👕",items:[
-    {id:"onesies",name:"Onesies newborn and 0-3mo",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"sleepers",name:"Sleepers and footed pajamas",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"hats",name:"Newborn hats and mittens",checked:false,notes:"",link:"",est:"",act:""},
-    {id:"detergent",name:"Baby laundry detergent",checked:false,notes:"",link:"",est:"",act:""},
-  ]},
-];
-
-let cats=[],expCat="furniture",expItem=null,addItem=null,addCat=false;
-
 firebase.initializeApp({
   apiKey:"AIzaSyD12wJ5v6QV_58H5aoI62W-afjk1iKEwkY",
   authDomain:"nursery-prep-tracker.firebaseapp.com",
@@ -142,195 +112,375 @@ firebase.initializeApp({
   messagingSenderId:"286961925725",
   appId:"1:286961925725:web:f48b0482e44262659c57b4"
 });
+const db = firebase.database();
+const dbRef = db.ref("nursery2");
 
-const db=firebase.database();
-const r=db.ref("nursery/categories");
+const CATS = [
+  {id:"furniture",name:"Furniture",icon:"🛏️",color:"#D97706"},
+  {id:"sleep",name:"Sleep",icon:"😴",color:"#7C3AED"},
+  {id:"monitor",name:"Monitor",icon:"📷",color:"#2563EB"},
+  {id:"feeding",name:"Feeding",icon:"🍼",color:"#DB2777"},
+  {id:"bathing",name:"Bathing",icon:"🛁",color:"#0891B2"},
+  {id:"health",name:"Health",icon:"🏥",color:"#16A34A"},
+  {id:"clothing",name:"Clothing",icon:"👕",color:"#E11D48"},
+];
 
-r.once("value",function(snap){
-  var d=snap.val();
-  cats=d||DEFAULT;
-  if(!d) r.set(DEFAULT);
-  document.getElementById("status").style.display="none";
-  document.getElementById("app").style.display="block";
+const DEFAULT_ITEMS = {
+  furniture:[
+    {id:"crib",name:"Crib",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"bassinet",name:"Bassinet",checked:false,notes:"Get all-in-one with pad and sheets. ~3 months.",link:"",img:"",est:"",act:""},
+    {id:"dresser",name:"Changing Table / Dresser",checked:false,notes:"Wayfair solid wood 9 drawer",link:"https://www.wayfair.com/baby-kids/pdp/one-allium-way-551-w-100-solid-wood-9-drawer-changing-table-dresser-w117255370.html",img:"",est:"",act:""},
+    {id:"recliner",name:"Power Button Recliner",checked:false,notes:"ARM RESTS ARE A MUST.",link:"",img:"",est:"",act:""},
+    {id:"side-table",name:"Side Table",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"acrylic-shelf",name:"Acrylic Shelf",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"rug",name:"Mat / Rug",checked:false,notes:"House of Noa Tumbling Mat - Bluebell",link:"https://www.thehouseofnoa.com/products/tumbling-mat-bluebell?variant=41686954901551",img:"",est:"",act:""},
+    {id:"utility-cart",name:"Utility Cart",checked:false,notes:"Postpartum station: snacks, water, burp cloths, diapers, puppy pee pads.",link:"",img:"",est:"",act:""},
+  ],
+  sleep:[
+    {id:"mattress",name:"Crib Mattress",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"mprotect",name:"Mattress Protector",checked:false,notes:"Amazon / registry",link:"",img:"",est:"",act:""},
+    {id:"sheets",name:"Crib Sheets",checked:false,notes:"Amazon / registry",link:"",img:"",est:"",act:""},
+    {id:"sleepsack",name:"Sleep Sacks",checked:false,notes:"Safer than blankets - get multiple sizes",link:"",img:"",est:"",act:""},
+    {id:"sound",name:"Sound Machine",checked:false,notes:"Helps baby stay asleep longer",link:"",img:"",est:"",act:""},
+    {id:"nightlight",name:"Night Light - Hatch Tap",checked:false,notes:"Comforting ambience without overhead light.",link:"https://www.amazon.com/s?k=hatch+rest+tap",img:"",est:"",act:""},
+  ],
+  monitor:[
+    {id:"mon-home",name:"Baby Monitor (no WiFi)",checked:false,notes:"Closed circuit - more secure.",link:"",img:"",est:"",act:""},
+    {id:"mon-travel",name:"Travel Monitor",checked:false,notes:"Closed circuit preferred",link:"",img:"",est:"",act:""},
+    {id:"owlet",name:"Owlet Smart Sock",checked:false,notes:"Tracks oxygen and heart rate while sleeping",link:"",img:"",est:"",act:""},
+  ],
+  feeding:[
+    {id:"bottles",name:"Baby Bottles x6",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"pump",name:"Breast Pump",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"nursing",name:"Nursing Pillow",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"sterilizer",name:"Bottle Sterilizer",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"bibs",name:"Burp Cloths & Bibs",checked:false,notes:"",link:"",img:"",est:"",act:""},
+  ],
+  bathing:[
+    {id:"tub",name:"Baby Bathtub",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"towels",name:"Hooded Towels x3",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"wash",name:"Baby Wash & Shampoo",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"lotion",name:"Baby Lotion",checked:false,notes:"",link:"",img:"",est:"",act:""},
+  ],
+  health:[
+    {id:"therm",name:"Rectal Thermometer",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"nasal",name:"Nasal Aspirator (Frida)",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"firstaid",name:"Baby First Aid Kit",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"outlet",name:"Outlet Covers",checked:false,notes:"",link:"",img:"",est:"",act:""},
+  ],
+  clothing:[
+    {id:"onesies",name:"Onesies NB + 0-3mo",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"sleepers",name:"Sleepers / Footed PJs",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"hats",name:"Newborn Hats & Mittens",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"detergent",name:"Baby Laundry Detergent",checked:false,notes:"",link:"",img:"",est:"",act:""},
+  ],
+};
+
+// State
+let data = {};
+let activeCat = "furniture";
+let editingItem = null; // {catId, item}
+let addingItem = null;  // catId
+let loaded = false;
+
+// Load
+dbRef.once("value", function(snap) {
+  var d = snap.val();
+  data = d || JSON.parse(JSON.stringify(DEFAULT_ITEMS));
+  if (!d) dbRef.set(data);
+  loaded = true;
   render();
 });
-r.on("value",function(snap){
-  var d=snap.val();
-  if(d){cats=d;render();}
+dbRef.on("value", function(snap) {
+  var d = snap.val();
+  if (d && loaded) { data = d; render(); }
 });
 
-function save(){r.set(cats);}
+function save() { dbRef.set(data); }
 
-function render(){
-  var all=cats.flatMap(function(c){return c.items;});
-  var est=all.reduce(function(s,i){return s+(parseFloat(i.est)||0);},0);
-  var act=all.filter(function(i){return i.act!=="";}).reduce(function(s,i){return s+(parseFloat(i.act)||0);},0);
-  var tot=all.length,chk=all.filter(function(i){return i.checked;}).length;
-  var pct=tot?Math.round(chk/tot*100):0;
-  var h="";
-  h+='<div class="hero"><div class="hero-label">Feldman Family</div>';
-  h+='<h1>Nursery prep tracker</h1><p>Baby boy arriving October 2026 &#x1F476;</p>';
-  h+='<div class="progress-bar"><div class="progress-fill" style="width:'+pct+'%"></div></div>';
-  h+='<div class="prog-label">'+pct+'% &middot; '+chk+' of '+tot+' items checked off</div></div>';
-  h+='<div class="wrap">';
-  h+='<div class="bgrid">';
-  h+='<div class="bc" style="background:#FEF9C3;color:#713F12"><div class="e">&#x1F4CB;</div><div class="v">'+fm(est)+'</div><div class="l">Estimated</div></div>';
-  h+='<div class="bc" style="background:#FCE7F3;color:#831843"><div class="e">&#x1F4B3;</div><div class="v">'+fm(act)+'</div><div class="l">Spent so far</div></div>';
-  h+='<div class="bc" style="background:#DCFCE7;color:#14532D"><div class="e">&#x1F3AF;</div><div class="v">'+(est?fm(Math.max(0,est-act)):"—")+'</div><div class="l">Remaining</div></div>';
-  h+='<div class="bc" style="background:#DBEAFE;color:#1E3A8A"><div class="e">&#x2705;</div><div class="v">'+chk+'/'+tot+'</div><div class="l">Purchased</div></div>';
-  h+='</div>';
-  h+='<div class="sharebox"><h3>&#x1F48C; Share with Anna</h3>';
-  h+='<p>Send her this link &mdash; edits sync instantly on any device!</p>';
-  h+='<div class="srow"><input class="surl" id="surl" value="'+esc(window.location.href)+'" readonly/>';
-  h+='<button class="sbtn" id="copybtn">Copy link</button></div>';
-  h+='<div class="smsg" id="smsg">&#x2705; Copied! Send it to Anna.</div></div>';
+function uid() { return Math.random().toString(36).slice(2,9); }
 
-  cats.forEach(function(cat){
-    var c=gc(cat.id);
-    var cc=cat.items.filter(function(i){return i.checked;}).length;
-    var ct=cat.items.length;
-    var cp=ct?Math.round(cc/ct*100):0;
-    var io=expCat===cat.id;
-    h+='<div class="cat" style="border:1.5px solid '+c.li+'">';
-    h+='<div class="cath" style="background:'+c.bg+'" data-cid="'+cat.id+'">';
-    h+='<div class="cati">'+cat.icon+'</div>';
-    h+='<div style="flex:1;min-width:0"><div class="catn">'+esc(cat.name)+'</div>';
-    h+='<div class="catprow"><div class="catbar"><div class="catfill" style="width:'+cp+'%;background:'+c.ac+'"></div></div>';
-    h+='<div class="catct" style="color:'+c.ac+'">'+cc+'/'+ct+'</div></div></div>';
-    h+='<div style="font-size:13px;color:'+c.ac+'">'+(io?"&#x25B2;":"&#x25BC;")+'</div></div>';
-    h+='<div class="catbody'+(io?" open":"")+'">';
-    cat.items.forEach(function(item){
-      var ii=expItem===item.id;
-      h+='<div><div class="irow" data-iid="'+item.id+'">';
-      h+='<div class="cb" data-cid2="'+cat.id+'" data-iid2="'+item.id+'" style="'+(item.checked?"background:"+c.ac+";border-color:"+c.ac:"")+'">'+( item.checked?"&#x2713;":"")+'</div>';
-      h+='<div class="iname'+(item.checked?" done":"")+'">'+esc(item.name)+'</div>';
-      h+='<div class="imeta">';
-      if(item.est) h+='<span class="pbadge" style="background:'+c.bg+';color:'+c.ac+'">&dollar;'+(parseFloat(item.est)||0)+'</span>';
-      if(item.link) h+='<a href="'+esc(item.link)+'" target="_blank" style="color:'+c.ac+';text-decoration:none;font-size:14px" data-extlink="1">&#x2197;</a>';
-      if(item.notes) h+='<span style="font-size:12px">&#x1F4DD;</span>';
-      h+='<span style="font-size:11px;color:#94a3b8">'+(ii?"&#x25B2;":"&#x25BC;")+'</span>';
-      h+='</div></div>';
-      h+='<div class="idet'+(ii?" open":"")+'">';
-      if(item.notes) h+='<div class="nbox" style="border-left-color:'+c.ac+';background:'+c.bg+'">'+esc(item.notes)+'</div>';
-      h+='<div class="fg">';
-      h+='<div class="fi"><label>Estimated ($)</label><input type="number" value="'+esc(item.est||"")+'" placeholder="0" data-f="'+cat.id+"|"+item.id+'|est"/></div>';
-      h+='<div class="fi"><label>Actual ($)</label><input type="number" value="'+esc(item.act||"")+'" placeholder="0" data-f="'+cat.id+"|"+item.id+'|act"/></div>';
-      h+='</div>';
-      h+='<div class="ff"><label>Product link</label><input type="url" value="'+esc(item.link||"")+'" placeholder="https://..." data-f="'+cat.id+"|"+item.id+'|link"/></div>';
-      h+='<div class="ff"><label>Notes</label><input type="text" value="'+esc(item.notes||"")+'" placeholder="Any notes..." data-f="'+cat.id+"|"+item.id+'|notes"/></div>';
-      h+='<button class="bdel" data-del="'+cat.id+"|"+item.id+'">&#x1F5D1; Remove</button>';
-      h+='</div></div>';
-    });
-    h+='<div class="addrow">';
-    if(addItem===cat.id){
-      h+='<input class="addinput" id="newiteminput" placeholder="Item name..."/>';
-      h+='<button class="bsm p" style="background:'+c.ac+'" data-additem="'+cat.id+'">Add</button>';
-      h+='<button class="bsm" data-cancelitem="1">Cancel</button>';
-    } else {
-      h+='<button class="addibtn" style="color:'+c.ac+'" data-startitem="'+cat.id+'">+ Add item</button>';
-    }
-    h+='</div><button class="remcat" data-delcat="'+cat.id+'">&#x1F5D1; Remove category</button>';
-    h+='</div></div>';
-  });
-
-  if(addCat){
-    h+='<div class="addcatrow"><input class="addcatin" id="newcatinput" placeholder="Category name..."/>';
-    h+='<button class="bsm p" style="background:#7c3aed;color:#fff;border:none" id="submitcat">Add</button>';
-    h+='<button class="bsm" id="cancelcat">Cancel</button></div>';
-  } else {
-    h+='<button class="addcatbtn" id="startcat">+ Add a category</button>';
+function getImg(item) {
+  if (item.img) return item.img;
+  if (item.link) {
+    // Use Google favicon/screenshot as placeholder, or just return null to show emoji
+    return null;
   }
-  h+='<div class="syncst">&#x1F504; Live sync via Firebase &middot; Changes save instantly</div></div>';
-  document.getElementById("app").innerHTML=h;
-
-  document.getElementById("copybtn").onclick=function(){
-    navigator.clipboard.writeText(document.getElementById("surl").value).catch(function(){});
-    var m=document.getElementById("smsg");m.style.display="block";
-    setTimeout(function(){m.style.display="none";},2500);
-  };
-  document.querySelectorAll(".cath").forEach(function(el){
-    el.onclick=function(){expCat=expCat===el.dataset.cid?null:el.dataset.cid;render();};
-  });
-  document.querySelectorAll(".irow").forEach(function(el){
-    el.onclick=function(e){
-      if(e.target.closest(".cb")||e.target.closest("[data-extlink]"))return;
-      expItem=expItem===el.dataset.iid?null:el.dataset.iid;render();
-    };
-  });
-  document.querySelectorAll(".cb").forEach(function(el){
-    el.onclick=function(e){
-      e.stopPropagation();
-      var cId=el.dataset.cid2,iId=el.dataset.iid2;
-      cats=cats.map(function(c){
-        if(c.id!==cId)return c;
-        return Object.assign({},c,{items:c.items.map(function(i){
-          if(i.id!==iId)return i;
-          return Object.assign({},i,{checked:!i.checked});
-        })});
-      });
-      save();render();
-    };
-  });
-  document.querySelectorAll("[data-f]").forEach(function(el){
-    el.onchange=function(){
-      var p=el.dataset.f.split("|"),cId=p[0],iId=p[1],f=p[2];
-      cats=cats.map(function(c){
-        if(c.id!==cId)return c;
-        return Object.assign({},c,{items:c.items.map(function(i){
-          if(i.id!==iId)return i;
-          var u=Object.assign({},i);u[f]=el.value;return u;
-        })});
-      });
-      save();
-    };
-  });
-  document.querySelectorAll("[data-del]").forEach(function(el){
-    el.onclick=function(){
-      var p=el.dataset.del.split("|"),cId=p[0],iId=p[1];
-      cats=cats.map(function(c){
-        if(c.id!==cId)return c;
-        return Object.assign({},c,{items:c.items.filter(function(i){return i.id!==iId;})});
-      });
-      if(expItem===iId)expItem=null;
-      save();render();
-    };
-  });
-  document.querySelectorAll("[data-delcat]").forEach(function(el){
-    el.onclick=function(){cats=cats.filter(function(c){return c.id!==el.dataset.delcat;});save();render();};
-  });
-  document.querySelectorAll("[data-startitem]").forEach(function(el){
-    el.onclick=function(){addItem=el.dataset.startitem;render();};
-  });
-  document.querySelectorAll("[data-additem]").forEach(function(el){
-    el.onclick=function(){
-      var v=document.getElementById("newiteminput").value;
-      if(!v.trim())return;
-      var item={id:uid(),name:v.trim(),checked:false,notes:"",link:"",est:"",act:""};
-      cats=cats.map(function(c){
-        if(c.id!==el.dataset.additem)return c;
-        return Object.assign({},c,{items:c.items.concat([item])});
-      });
-      addItem=null;save();render();
-    };
-  });
-  var ci=document.querySelector("[data-cancelitem]");
-  if(ci)ci.onclick=function(){addItem=null;render();};
-  var ni=document.getElementById("newiteminput");
-  if(ni){ni.focus();ni.onkeydown=function(e){if(e.key==="Enter")document.querySelector("[data-additem]").click();if(e.key==="Escape"){addItem=null;render();}};}
-  var sc=document.getElementById("startcat");
-  if(sc)sc.onclick=function(){addCat=true;render();};
-  var cc2=document.getElementById("cancelcat");
-  if(cc2)cc2.onclick=function(){addCat=false;render();};
-  var subc=document.getElementById("submitcat");
-  if(subc)subc.onclick=function(){
-    var v=document.getElementById("newcatinput").value;
-    if(!v.trim())return;
-    cats=cats.concat([{id:uid(),name:v.trim(),icon:"📦",items:[]}]);
-    expCat=cats[cats.length-1].id;addCat=false;save();render();
-  };
-  var nci=document.getElementById("newcatinput");
-  if(nci){nci.focus();nci.onkeydown=function(e){if(e.key==="Enter")document.getElementById("submitcat").click();if(e.key==="Escape"){addCat=false;render();}};}
+  return null;
 }
+
+function catEmoji(catId) {
+  var c = CATS.find(function(x){return x.id===catId;});
+  return c ? c.icon : "📦";
+}
+function catColor(catId) {
+  var c = CATS.find(function(x){return x.id===catId;});
+  return c ? c.color : "#64748B";
+}
+function catName(catId) {
+  var c = CATS.find(function(x){return x.id===catId;});
+  return c ? c.name : catId;
+}
+
+function openEdit(catId, itemId) {
+  var items = data[catId] || [];
+  var item = items.find(function(i){return i.id===itemId;});
+  if (!item) return;
+  editingItem = {catId: catId, item: JSON.parse(JSON.stringify(item))};
+  render();
+}
+
+function closeEdit() { editingItem = null; render(); }
+
+function saveEdit() {
+  var e = editingItem;
+  data[e.catId] = (data[e.catId]||[]).map(function(i){
+    return i.id===e.item.id ? e.item : i;
+  });
+  save();
+  editingItem = null;
+  render();
+}
+
+function deleteItem(catId, itemId) {
+  data[catId] = (data[catId]||[]).filter(function(i){return i.id!==itemId;});
+  save(); editingItem = null; render();
+}
+
+function toggleCheck(catId, itemId) {
+  data[catId] = (data[catId]||[]).map(function(i){
+    return i.id===itemId ? Object.assign({},i,{checked:!i.checked}) : i;
+  });
+  save(); render();
+}
+
+function addNewItem(catId, name) {
+  if (!name.trim()) return;
+  var item = {id:uid(),name:name.trim(),checked:false,notes:"",link:"",img:"",est:"",act:""};
+  data[catId] = (data[catId]||[]).concat([item]);
+  save(); addingItem = null; render();
+}
+
+// ---- RENDER ----
+function render() {
+  if (!loaded) return;
+  var root = document.getElementById("root");
+
+  var allItems = [];
+  Object.keys(data).forEach(function(k){ allItems = allItems.concat(data[k]||[]); });
+  var tot = allItems.length;
+  var chk = allItems.filter(function(i){return i.checked;}).length;
+  var pct = tot ? Math.round(chk/tot*100) : 0;
+  var est = allItems.reduce(function(s,i){return s+(parseFloat(i.est)||0);},0);
+  var act = allItems.filter(function(i){return i.act!=="";}).reduce(function(s,i){return s+(parseFloat(i.act)||0);},0);
+  var fm = function(n){return n?"$"+parseFloat(n).toLocaleString("en-US",{maximumFractionDigits:0}):"—";};
+
+  var items = data[activeCat] || [];
+  var cat = CATS.find(function(c){return c.id===activeCat;}) || CATS[0];
+
+  var html = "";
+
+  // Hero
+  html += '<div class="hero">';
+  html += '<div class="hero-sub">Feldman Family</div>';
+  html += '<h1>Nursery Prep</h1>';
+  html += '<p>Baby boy &bull; October 2026 &#x1F476;</p>';
+  html += '<div class="pbar"><div class="pfill" style="width:'+pct+'%"></div></div>';
+  html += '<div class="plabel">'+pct+'% complete &middot; '+chk+'/'+tot+' items</div>';
+  html += '</div>';
+
+  // Budget
+  html += '<div class="budgets">';
+  html += '<div class="bcard"><div class="be">&#x1F4CB;</div><div class="bv">'+fm(est)+'</div><div class="bl">Estimated</div></div>';
+  html += '<div class="bcard"><div class="be">&#x1F4B3;</div><div class="bv">'+fm(act)+'</div><div class="bl">Spent</div></div>';
+  html += '<div class="bcard"><div class="be">&#x1F3AF;</div><div class="bv">'+(est?fm(Math.max(0,est-act)):"—")+'</div><div class="bl">Remaining</div></div>';
+  html += '<div class="bcard"><div class="be">&#x2705;</div><div class="bv">'+chk+'/'+tot+'</div><div class="bl">Bought</div></div>';
+  html += '</div>';
+
+  // Share
+  html += '<div class="sharebar"><p>&#x1F48C; Share with Anna</p><button class="sharebtn" id="sharebtn">Copy link</button></div>';
+  html += '<div class="sharemsg" id="sharemsg">&#x2705; Link copied! Send it to Anna.</div>';
+
+  // Tabs
+  html += '<div class="tabs">';
+  CATS.forEach(function(c){
+    var active = c.id===activeCat;
+    html += '<div class="tab'+(active?" active":"")+'" data-tab="'+c.id+'" style="'+(active?"background:"+c.color+";color:#fff":"")+'">'+c.icon+' '+c.name+'</div>';
+  });
+  html += '</div>';
+
+  // Section header
+  var catChk = items.filter(function(i){return i.checked;}).length;
+  html += '<div class="sec-header"><div class="sec-title">'+cat.icon+' '+cat.name+'</div><div class="sec-count">'+catChk+'/'+items.length+' bought</div></div>';
+
+  // Grid
+  html += '<div class="grid">';
+  items.forEach(function(item){
+    var hasLink = !!item.link;
+    var hasImg = !!item.img;
+    html += '<div class="card'+(item.checked?" bought":"")+'" data-edit="'+activeCat+'|'+item.id+'">';
+    // Image or emoji
+    if (hasImg) {
+      html += '<img class="card-img" src="'+item.img+'" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\'" alt=""/>';
+      html += '<div class="card-emoji" style="display:none">'+catEmoji(activeCat)+'</div>';
+    } else {
+      html += '<div class="card-emoji">'+catEmoji(activeCat)+'</div>';
+    }
+    html += '<div class="card-overlay"></div>';
+    // Link button (top left)
+    if (hasLink) {
+      html += '<a class="card-link has-link" href="'+item.link+'" target="_blank" data-extlink="1" title="Open link">&#x1F517;</a>';
+    } else {
+      html += '<div class="card-link" data-edit="'+activeCat+'|'+item.id+'" title="Add link">&#x1F517;</div>';
+    }
+    // Check (top right)
+    html += '<div class="card-check'+(item.checked?" done":"")+'" data-check="'+activeCat+'|'+item.id+'">'+(item.checked?"&#x2713;":"")+'</div>';
+    // Notes indicator
+    if (item.notes) html += '<div class="card-notes">&#x1F4DD;</div>';
+    // Bottom info
+    html += '<div class="card-bottom">';
+    html += '<div class="card-name">'+item.name+'</div>';
+    if (item.est) html += '<div class="card-price">$'+(parseFloat(item.est)||0)+'</div>';
+    html += '</div>';
+    html += '</div>';
+  });
+
+  // Add card
+  html += '<div class="card-add" id="addcard"><div class="card-add-icon">+</div><div class="card-add-label">Add item</div></div>';
+  html += '</div>'; // grid
+
+  // Edit modal
+  if (editingItem) {
+    var ei = editingItem.item;
+    var ec = editingItem.catId;
+    html += '<div class="modal-bg" id="modalbg">';
+    html += '<div class="modal">';
+    html += '<div class="modal-handle"></div>';
+    html += '<div class="modal-title">'+ei.name+'</div>';
+    html += '<div class="modal-cat">'+catName(ec)+'</div>';
+    // Thumb + hint
+    html += '<div class="modal-img-row">';
+    html += '<div class="modal-thumb" id="modal-thumb">';
+    if (ei.img) {
+      html += '<img src="'+ei.img+'" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML=\''+catEmoji(ec)+'\'"/>';
+    } else {
+      html += catEmoji(ec);
+    }
+    html += '</div>';
+    html += '<div class="modal-img-hint">Paste a product link below and tap "Save" — or paste a direct image URL in the Image field to show a photo on the card.</div>';
+    html += '</div>';
+
+    html += '<label class="flabel">Item name</label>';
+    html += '<input class="finput" id="ei-name" type="text" value="'+_esc(ei.name)+'" placeholder="Item name"/>';
+
+    html += '<label class="flabel">Product link (Amazon, Wayfair, etc.)</label>';
+    html += '<input class="finput" id="ei-link" type="url" value="'+_esc(ei.link)+'" placeholder="https://..."/>';
+
+    html += '<label class="flabel">Image URL (optional — for photo on card)</label>';
+    html += '<input class="finput" id="ei-img" type="url" value="'+_esc(ei.img)+'" placeholder="https://...image.jpg"/>';
+
+    html += '<div class="frow">';
+    html += '<div><label class="flabel">Estimated ($)</label><input class="finput" id="ei-est" type="number" value="'+_esc(ei.est)+'" placeholder="0"/></div>';
+    html += '<div><label class="flabel">Actual ($)</label><input class="finput" id="ei-act" type="number" value="'+_esc(ei.act)+'" placeholder="0"/></div>';
+    html += '</div>';
+
+    html += '<label class="flabel">Notes</label>';
+    html += '<input class="finput" id="ei-notes" type="text" value="'+_esc(ei.notes)+'" placeholder="Any notes..."/>';
+
+    html += '<div class="modal-actions">';
+    html += '<button class="btn-buy'+(ei.checked?" unbuy":"")+'" id="btn-toggle">'+(ei.checked?"&#x2713; Bought":"Mark as bought")+'</button>';
+    html += '<button class="btn-del" id="btn-del">&#x1F5D1;</button>';
+    html += '</div>';
+    html += '<button style="width:100%;margin-top:10px;padding:13px;border-radius:12px;border:none;font-size:15px;font-weight:700;cursor:pointer;background:#7c3aed;color:#fff" id="btn-save">Save</button>';
+    html += '</div></div>';
+  }
+
+  // Add item modal
+  if (addingItem) {
+    html += '<div class="modal-bg" id="addbg">';
+    html += '<div class="add-modal">';
+    html += '<div class="modal-handle"></div>';
+    html += '<div class="modal-title" style="margin-bottom:14px">Add item to '+catName(addingItem)+'</div>';
+    html += '<input id="addname" type="text" placeholder="Item name..." style="width:100%;font-size:15px;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:12px;font-family:inherit;margin-bottom:12px"/>';
+    html += '<button class="btn-add-confirm" id="btn-addconfirm">Add item</button>';
+    html += '</div></div>';
+  }
+
+  root.innerHTML = html;
+
+  // Events
+  document.getElementById("sharebtn").onclick = function(){
+    navigator.clipboard.writeText(window.location.href).catch(function(){});
+    var m = document.getElementById("sharemsg");
+    m.style.display = "block";
+    setTimeout(function(){m.style.display="none";}, 2500);
+  };
+
+  document.querySelectorAll(".tab").forEach(function(el){
+    el.onclick = function(){ activeCat = el.dataset.tab; render(); };
+  });
+
+  document.querySelectorAll(".card[data-edit]").forEach(function(el){
+    el.onclick = function(e){
+      if (e.target.closest("[data-extlink]") || e.target.closest(".card-check")) return;
+      var parts = el.dataset.edit.split("|");
+      openEdit(parts[0], parts[1]);
+    };
+  });
+
+  document.querySelectorAll(".card-check").forEach(function(el){
+    el.onclick = function(e){
+      e.stopPropagation();
+      var parts = el.dataset.check.split("|");
+      toggleCheck(parts[0], parts[1]);
+    };
+  });
+
+  var addcard = document.getElementById("addcard");
+  if (addcard) addcard.onclick = function(){ addingItem = activeCat; render(); };
+
+  // Edit modal events
+  if (editingItem) {
+    document.getElementById("modalbg").onclick = function(e){
+      if (e.target.id==="modalbg") closeEdit();
+    };
+    document.getElementById("btn-save").onclick = function(){
+      editingItem.item.name = document.getElementById("ei-name").value || editingItem.item.name;
+      editingItem.item.link = document.getElementById("ei-link").value;
+      editingItem.item.img  = document.getElementById("ei-img").value;
+      editingItem.item.est  = document.getElementById("ei-est").value;
+      editingItem.item.act  = document.getElementById("ei-act").value;
+      editingItem.item.notes= document.getElementById("ei-notes").value;
+      saveEdit();
+    };
+    document.getElementById("btn-toggle").onclick = function(){
+      editingItem.item.checked = !editingItem.item.checked;
+      document.getElementById("btn-toggle").textContent = editingItem.item.checked ? "✓ Bought" : "Mark as bought";
+      document.getElementById("btn-toggle").className = "btn-buy" + (editingItem.item.checked?" unbuy":"");
+    };
+    document.getElementById("btn-del").onclick = function(){
+      if (confirm("Remove this item?")) deleteItem(editingItem.catId, editingItem.item.id);
+    };
+  }
+
+  // Add modal events
+  if (addingItem) {
+    document.getElementById("addbg").onclick = function(e){
+      if (e.target.id==="addbg"){ addingItem=null; render(); }
+    };
+    var addname = document.getElementById("addname");
+    addname.focus();
+    addname.onkeydown = function(e){
+      if (e.key==="Enter") document.getElementById("btn-addconfirm").click();
+      if (e.key==="Escape"){ addingItem=null; render(); }
+    };
+    document.getElementById("btn-addconfirm").onclick = function(){
+      addNewItem(addingItem, document.getElementById("addname").value);
+    };
+  }
+}
+
+function _esc(s){ return String(s||"").replace(/"/g,"&quot;"); }
 </script>
 </body>
 </html>
