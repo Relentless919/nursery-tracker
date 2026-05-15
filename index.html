@@ -18,9 +18,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .budgets{display:flex;gap:7px;padding:10px 14px;overflow-x:auto;scrollbar-width:none}
 .budgets::-webkit-scrollbar{display:none}
 .bc{flex-shrink:0;background:#fff;border-radius:11px;padding:8px 12px;min-width:80px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.bc .be{font-size:14px;margin-bottom:1px}
-.bc .bv{font-size:15px;font-weight:700;color:#1e293b}
-.bc .bl{font-size:9px;color:#94a3b8;margin-top:1px}
+.bc .be{font-size:14px;margin-bottom:1px}.bc .bv{font-size:15px;font-weight:700;color:#1e293b}.bc .bl{font-size:9px;color:#94a3b8;margin-top:1px}
 .sharebar{margin:0 14px 10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:11px;padding:9px 12px;display:flex;align-items:center;gap:8px}
 .sharebar p{flex:1;font-size:11px;color:#166534;font-weight:500}
 .sharebtn{background:#16a34a;color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer}
@@ -32,30 +30,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .tab-add{flex-shrink:0;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;background:#faf5ff;color:#7c3aed;border:1.5px dashed #c4b5fd;white-space:nowrap}
 .sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:2px 14px 8px}
 .sec-title{font-size:14px;font-weight:700;color:#1e293b}
-.sec-count{font-size:11px;color:#94a3b8}
-
-/* GRID — 3 columns, small squares */
+.sec-hint{font-size:10px;color:#94a3b8}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 14px}
-.card{border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.08);position:relative;aspect-ratio:1;cursor:pointer;transition:transform .12s}
-.card:active{transform:scale(.96)}
+.card{border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.08);position:relative;aspect-ratio:1;cursor:pointer;transition:transform .12s;-webkit-user-select:none;user-select:none}
+.card:active{transform:scale(.95)}
 .card-img{width:100%;height:100%;object-fit:cover;display:block}
-.card-emoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;background:linear-gradient(135deg,#f8fafc,#f1f5f9)}
-.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.05) 55%,transparent 100%)}
-.card.bought .card-overlay{background:linear-gradient(to top,rgba(22,163,74,.75) 0%,rgba(22,163,74,.15) 55%,transparent 100%)}
+.card-emoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:34px;background:linear-gradient(135deg,#f8fafc,#f1f5f9)}
+.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,rgba(0,0,0,.05) 55%,transparent 100%)}
+.card.bought .card-overlay{background:linear-gradient(to top,rgba(22,163,74,.78) 0%,rgba(22,163,74,.15) 55%,transparent 100%)}
 .card-bottom{position:absolute;bottom:0;left:0;right:0;padding:5px 6px}
 .card-name{font-size:9px;font-weight:600;color:#fff;line-height:1.25;text-shadow:0 1px 2px rgba(0,0,0,.5)}
 .card-price{font-size:8px;color:rgba(255,255,255,.85);margin-top:1px}
-.card-check{position:absolute;top:5px;right:5px;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;cursor:pointer}
+.card-check{position:absolute;top:5px;right:5px;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;cursor:pointer;z-index:2}
 .card-check.done{background:#16a34a;border-color:#16a34a}
-.card-link{position:absolute;top:5px;left:5px;width:20px;height:20px;border-radius:50%;background:rgba(99,102,241,.75);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;text-decoration:none}
-.card-add{border-radius:12px;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.05);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;border:2px dashed #e2e8f0}
-.card-add:active{transform:scale(.96)}
+.card-edit{position:absolute;top:5px;left:5px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;cursor:pointer;z-index:2}
+.card-add{border-radius:12px;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.05);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;border:2px dashed #e2e8f0;transition:transform .12s}
+.card-add:active{transform:scale(.95)}
 .card-add-icon{font-size:22px;opacity:.3}
 .card-add-lbl{font-size:9px;color:#94a3b8;font-weight:600;text-align:center}
-
-/* Bottom sheet modal */
 .mbg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;display:flex;align-items:flex-end;justify-content:center}
-.msheet{background:#fff;border-radius:22px 22px 0 0;padding:18px 18px 42px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
+.msheet{background:#fff;border-radius:22px 22px 0 0;padding:18px 18px 44px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
 .mhandle{width:34px;height:4px;background:#e2e8f0;border-radius:999px;margin:0 auto 14px}
 .mtitle{font-size:16px;font-weight:700;color:#1e293b;margin-bottom:2px}
 .msub{font-size:11px;color:#94a3b8;margin-bottom:14px}
@@ -66,27 +60,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .paste-row{display:flex;gap:8px;margin-bottom:10px}
 .paste-input{flex:1;font-size:13px;padding:11px 12px;border:1.5px solid #e2e8f0;border-radius:11px;font-family:inherit;background:#fafafa}
 .paste-input:focus{outline:none;border-color:#a78bfa;background:#fff}
-.btn-fetch{background:#7c3aed;color:#fff;border:none;border-radius:11px;padding:11px 14px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
-.btn-fetch:disabled{background:#c4b5fd;cursor:not-allowed}
-.fetch-status{font-size:12px;color:#7c3aed;margin-bottom:8px;min-height:16px}
-.preview-row{display:flex;gap:10px;align-items:center;background:#f8f7ff;border-radius:11px;padding:10px;margin-bottom:10px}
+.btn-go{background:#7c3aed;color:#fff;border:none;border-radius:11px;padding:11px 16px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;min-width:56px}
+.btn-go:disabled{background:#c4b5fd;cursor:not-allowed}
+.fstatus{font-size:12px;color:#7c3aed;margin-bottom:8px;min-height:16px;text-align:center}
+.preview-row{display:flex;gap:10px;align-items:center;background:#f8f7ff;border-radius:11px;padding:10px;margin-bottom:12px}
 .preview-thumb{width:56px;height:56px;border-radius:9px;object-fit:cover;background:#e2e8f0;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden}
-.preview-info{flex:1;min-width:0}
+.preview-thumb img{width:100%;height:100%;object-fit:cover}
 .preview-name{font-size:13px;font-weight:600;color:#1e293b;margin-bottom:2px}
 .preview-price{font-size:12px;color:#7c3aed}
-.mactions{display:flex;gap:8px;margin-top:4px}
+.mactions{display:flex;gap:8px;margin-top:6px}
 .btn-buy{flex:1;padding:12px;border-radius:11px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:#16a34a;color:#fff}
 .btn-buy.unbuy{background:#f1f5f9;color:#64748b}
 .btn-del{padding:12px 14px;border-radius:11px;border:1.5px solid #fca5a5;background:transparent;color:#ef4444;font-size:14px;cursor:pointer}
 .btn-save{width:100%;margin-top:8px;padding:13px;border-radius:11px;border:none;font-size:15px;font-weight:700;cursor:pointer;background:#7c3aed;color:#fff}
-.add-cat-input{width:100%;font-size:15px;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:12px;font-family:inherit;margin-bottom:12px}
-.add-cat-input:focus{outline:none;border-color:#a78bfa}
-.btn-addcat{width:100%;padding:13px;border-radius:12px;border:none;font-size:15px;font-weight:700;cursor:pointer;background:#7c3aed;color:#fff}
-.loading{text-align:center;padding:60px 20px;color:#94a3b8;font-size:14px}
+.btn-openlink{width:100%;margin-top:8px;padding:13px;border-radius:11px;border:1.5px solid #e2e8f0;font-size:14px;font-weight:600;cursor:pointer;background:#fff;color:#1e293b;display:flex;align-items:center;justify-content:center;gap:6px}
 </style>
 </head>
 <body>
-<div id="root"><div class="loading">🍼 Loading...</div></div>
+<div id="root"><div style="text-align:center;padding:60px 20px;color:#94a3b8;font-size:14px">🍼 Loading...</div></div>
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -98,12 +89,11 @@ firebase.initializeApp({
   projectId:"nursery-prep-tracker",
   storageBucket:"nursery-prep-tracker.firebasestorage.app",
   messagingSenderId:"286961925725",
-  appId:"1:286961925241:web:f48b0482e44262659c57b4"
+  appId:"1:286961925725:web:f48b0482e44262659c57b4"
 });
-const db = firebase.database();
-const dbRef = db.ref("nursery3");
+const db=firebase.database(), dbRef=db.ref("nursery4");
 
-const DEFAULT_CATS = [
+const DEF_CATS=[
   {id:"furniture",name:"Furniture",icon:"🛏️",color:"#D97706"},
   {id:"sleep",name:"Sleep",icon:"😴",color:"#7C3AED"},
   {id:"monitor",name:"Monitor",icon:"📷",color:"#2563EB"},
@@ -112,30 +102,29 @@ const DEFAULT_CATS = [
   {id:"health",name:"Health",icon:"🏥",color:"#16A34A"},
   {id:"clothing",name:"Clothing",icon:"👕",color:"#E11D48"},
 ];
-
-const DEFAULT_ITEMS = {
+const DEF_ITEMS={
   furniture:[
     {id:"crib",name:"Crib",checked:false,notes:"",link:"",img:"",est:"",act:""},
-    {id:"bassinet",name:"Bassinet",checked:false,notes:"Get all-in-one with pad and sheets.",link:"",img:"",est:"",act:""},
+    {id:"bassinet",name:"Bassinet",checked:false,notes:"All-in-one with pad + sheets",link:"",img:"",est:"",act:""},
     {id:"dresser",name:"Changing Table/Dresser",checked:false,notes:"Wayfair solid wood 9 drawer",link:"https://www.wayfair.com/baby-kids/pdp/one-allium-way-551-w-100-solid-wood-9-drawer-changing-table-dresser-w117255370.html",img:"",est:"",act:""},
-    {id:"recliner",name:"Power Button Recliner",checked:false,notes:"ARM RESTS ARE A MUST.",link:"",img:"",est:"",act:""},
+    {id:"recliner",name:"Power Button Recliner",checked:false,notes:"ARM RESTS A MUST",link:"",img:"",est:"",act:""},
     {id:"side-table",name:"Side Table",checked:false,notes:"",link:"",img:"",est:"",act:""},
     {id:"acrylic-shelf",name:"Acrylic Shelf",checked:false,notes:"",link:"",img:"",est:"",act:""},
     {id:"rug",name:"Mat / Rug",checked:false,notes:"House of Noa Tumbling Mat - Bluebell",link:"https://www.thehouseofnoa.com/products/tumbling-mat-bluebell?variant=41686954901551",img:"",est:"",act:""},
-    {id:"utility-cart",name:"Utility Cart",checked:false,notes:"Postpartum station: snacks, water, burp cloths, diapers, puppy pee pads.",link:"",img:"",est:"",act:""},
+    {id:"cart",name:"Utility Cart",checked:false,notes:"Postpartum station: snacks, water, burp cloths, diapers",link:"",img:"",est:"",act:""},
   ],
   sleep:[
     {id:"mattress",name:"Crib Mattress",checked:false,notes:"",link:"",img:"",est:"",act:""},
     {id:"mprotect",name:"Mattress Protector",checked:false,notes:"Amazon/registry",link:"",img:"",est:"",act:""},
     {id:"sheets",name:"Crib Sheets",checked:false,notes:"Amazon/registry",link:"",img:"",est:"",act:""},
     {id:"sleepsack",name:"Sleep Sacks",checked:false,notes:"Safer than blankets",link:"",img:"",est:"",act:""},
-    {id:"sound",name:"Sound Machine",checked:false,notes:"Helps baby stay asleep longer",link:"",img:"",est:"",act:""},
-    {id:"nightlight",name:"Night Light - Hatch Tap",checked:false,notes:"",link:"https://www.amazon.com/s?k=hatch+rest+tap",img:"",est:"",act:""},
+    {id:"sound",name:"Sound Machine",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"nightlight",name:"Hatch Tap Night Light",checked:false,notes:"",link:"https://www.amazon.com/s?k=hatch+rest+tap",img:"",est:"",act:""},
   ],
   monitor:[
-    {id:"mon-home",name:"Baby Monitor (no WiFi)",checked:false,notes:"Closed circuit - more secure.",link:"",img:"",est:"",act:""},
-    {id:"mon-travel",name:"Travel Monitor",checked:false,notes:"Closed circuit preferred",link:"",img:"",est:"",act:""},
-    {id:"owlet",name:"Owlet Smart Sock",checked:false,notes:"Tracks oxygen + heart rate",link:"",img:"",est:"",act:""},
+    {id:"mon-home",name:"Baby Monitor (no WiFi)",checked:false,notes:"Closed circuit",link:"",img:"",est:"",act:""},
+    {id:"mon-travel",name:"Travel Monitor",checked:false,notes:"",link:"",img:"",est:"",act:""},
+    {id:"owlet",name:"Owlet Smart Sock",checked:false,notes:"O2 + heart rate tracking",link:"",img:"",est:"",act:""},
   ],
   feeding:[
     {id:"bottles",name:"Baby Bottles x6",checked:false,notes:"",link:"",img:"",est:"",act:""},
@@ -164,426 +153,297 @@ const DEFAULT_ITEMS = {
   ],
 };
 
-const ANTHROPIC_KEY = ""; // Leave blank — AI fetch uses a CORS proxy
+let state={cats:DEF_CATS,items:DEF_ITEMS};
+let activeCat="furniture", modal=null, loaded=false;
 
-let state = {cats: DEFAULT_CATS, items: DEFAULT_ITEMS};
-let activeCat = "furniture";
-let modal = null; // null | {type:'edit',catId,item} | {type:'add',catId} | {type:'addcat'}
-let loaded = false;
-
-dbRef.once("value", function(snap){
-  var d = snap.val();
-  if (d) {
-    state.cats = d.cats || DEFAULT_CATS;
-    state.items = d.items || DEFAULT_ITEMS;
-  } else {
-    dbRef.set(state);
-  }
-  loaded = true;
-  render();
+dbRef.once("value",function(s){
+  var d=s.val();
+  if(d){state.cats=d.cats||DEF_CATS;state.items=d.items||DEF_ITEMS;}
+  else dbRef.set(state);
+  loaded=true; render();
 });
-dbRef.on("value", function(snap){
-  var d = snap.val();
-  if (d && loaded) {
-    state.cats = d.cats || state.cats;
-    state.items = d.items || state.items;
-    render();
-  }
+dbRef.on("value",function(s){
+  var d=s.val();
+  if(d&&loaded){state.cats=d.cats||state.cats;state.items=d.items||state.items;render();}
 });
 
-function save(){ dbRef.set(state); }
-function uid(){ return Math.random().toString(36).slice(2,9); }
-function esc(s){ return String(s||"").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-function fm(n){ return n ? "$"+parseFloat(n).toLocaleString("en-US",{maximumFractionDigits:0}) : "—"; }
-function getCat(id){ return state.cats.find(function(c){return c.id===id;}) || {icon:"📦",color:"#64748B",name:id}; }
+function save(){dbRef.set(state);}
+function uid(){return Math.random().toString(36).slice(2,9);}
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function fm(n){return n?"$"+parseFloat(n).toLocaleString("en-US",{maximumFractionDigits:0}):"—";}
+function gc(id){return state.cats.find(function(c){return c.id===id;})||{icon:"📦",color:"#64748B",name:id};}
 
-// AI fetch product info from URL
-async function fetchProduct(url) {
-  // Use allorigins to bypass CORS, then Claude AI to parse
-  var proxyUrl = "https://api.allorigins.win/get?url=" + encodeURIComponent(url);
-  var resp = await fetch(proxyUrl);
-  var json = await resp.json();
-  var html = json.contents || "";
-
-  // Extract og:image, og:title, price via regex
-  var title = "";
-  var img = "";
-  var price = "";
-
-  var titleM = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i)
-             || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:title["']/i);
-  if (titleM) title = titleM[1].trim();
-
-  var imgM = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
-           || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
-  if (imgM) img = imgM[1].trim();
-
-  var priceM = html.match(/\$\s*([\d,]+(?:\.\d{2})?)/);
-  if (priceM) price = priceM[1].replace(/,/g,"");
-
-  // Clean up title (remove site name after | or -)
-  if (title) {
-    title = title.split(" | ")[0].split(" - ")[0].trim();
-    if (title.length > 60) title = title.substring(0,60) + "…";
+async function fetchProduct(url){
+  // Try multiple CORS proxies
+  var proxies=[
+    "https://api.allorigins.win/get?url=",
+    "https://corsproxy.io/?",
+  ];
+  var html="";
+  for(var i=0;i<proxies.length;i++){
+    try{
+      var r=await fetch(proxies[i]+encodeURIComponent(url),{signal:AbortSignal.timeout(8000)});
+      if(!r.ok) continue;
+      var j=await r.json().catch(async function(){return{contents:await r.text()};});
+      html=j.contents||j||"";
+      if(html.length>500) break;
+    }catch(e){continue;}
   }
+  if(!html) throw new Error("Could not fetch");
 
-  return {title: title || "", img: img || "", price: price || ""};
-}
-
-function openAdd(catId){ modal = {type:"add", catId:catId, url:"", status:"", preview:null}; render(); }
-function openEdit(catId, itemId){
-  var item = (state.items[catId]||[]).find(function(i){return i.id===itemId;});
-  if (!item) return;
-  modal = {type:"edit", catId:catId, item: JSON.parse(JSON.stringify(item))};
-  render();
-}
-function openAddCat(){ modal = {type:"addcat"}; render(); }
-function closeModal(){ modal = null; render(); }
-
-function toggleCheck(catId, itemId){
-  state.items[catId] = (state.items[catId]||[]).map(function(i){
-    return i.id===itemId ? Object.assign({},i,{checked:!i.checked}) : i;
-  });
-  save(); render();
-}
-function deleteItem(catId, itemId){
-  state.items[catId] = (state.items[catId]||[]).filter(function(i){return i.id!==itemId;});
-  save(); modal = null; render();
-}
-function saveEdit(){
-  var e = modal;
-  state.items[e.catId] = (state.items[e.catId]||[]).map(function(i){
-    return i.id===e.item.id ? e.item : i;
-  });
-  save(); modal = null; render();
-}
-function addItemFromPreview(catId, preview, url){
-  var item = {
-    id: uid(),
-    name: preview.title || "New item",
-    checked: false,
-    notes: "",
-    link: url,
-    img: preview.img || "",
-    est: preview.price || "",
-    act: ""
-  };
-  if (!state.items[catId]) state.items[catId] = [];
-  state.items[catId].push(item);
-  save(); modal = null; render();
-}
-function addCategory(name, icon){
-  if (!name.trim()) return;
-  var id = uid();
-  state.cats.push({id:id, name:name.trim(), icon:icon||"📦", color:"#7C3AED"});
-  state.items[id] = [];
-  activeCat = id;
-  save(); modal = null; render();
+  var title="",img="",price="";
+  // og:title
+  var tm=html.match(/property=["']og:title["'][^>]*content=["']([^"']{3,200})["']/i)
+          ||html.match(/content=["']([^"']{3,200})["'][^>]*property=["']og:title["']/i)
+          ||html.match(/<title[^>]*>([^<]{3,200})<\/title>/i);
+  if(tm) title=tm[1].replace(/&amp;/g,"&").replace(/&#039;/g,"'").replace(/&quot;/g,'"').trim();
+  // og:image
+  var im=html.match(/property=["']og:image["'][^>]*content=["']([^"']+)["']/i)
+          ||html.match(/content=["']([^"']+)["'][^>]*property=["']og:image["']/i);
+  if(im) img=im[1].trim();
+  // price
+  var pm=html.match(/\$\s*([\d,]+\.\d{2})/)||html.match(/"price":\s*"([\d.]+)"/)||html.match(/price[^>]*>\$?([\d,]+\.\d{2})/i);
+  if(pm) price=pm[1].replace(/,/g,"");
+  // clean title
+  if(title){title=title.split("|")[0].split(" - ")[0].split(" – ")[0].trim();if(title.length>70)title=title.slice(0,70)+"…";}
+  return{title,img,price};
 }
 
 function render(){
-  if (!loaded) return;
-  var root = document.getElementById("root");
-  var all = [];
-  state.cats.forEach(function(c){ all = all.concat(state.items[c.id]||[]); });
-  var tot = all.length, chk = all.filter(function(i){return i.checked;}).length;
-  var pct = tot ? Math.round(chk/tot*100) : 0;
-  var est = all.reduce(function(s,i){return s+(parseFloat(i.est)||0);},0);
-  var act = all.filter(function(i){return i.act!=="";}).reduce(function(s,i){return s+(parseFloat(i.act)||0);},0);
+  if(!loaded)return;
+  var all=[];
+  state.cats.forEach(function(c){all=all.concat(state.items[c.id]||[]);});
+  var tot=all.length,chk=all.filter(function(i){return i.checked;}).length;
+  var pct=tot?Math.round(chk/tot*100):0;
+  var est=all.reduce(function(s,i){return s+(parseFloat(i.est)||0);},0);
+  var act=all.filter(function(i){return i.act!=="";}).reduce(function(s,i){return s+(parseFloat(i.act)||0);},0);
+  var items=state.items[activeCat]||[];
+  var cat=gc(activeCat);
+  var catChk=items.filter(function(i){return i.checked;}).length;
+  var h="";
 
-  var items = state.items[activeCat] || [];
-  var cat = getCat(activeCat);
-  var catChk = items.filter(function(i){return i.checked;}).length;
+  h+='<div class="hero"><div class="hero-sub">Feldman Family</div><h1>Nursery Prep</h1><p>Baby boy &bull; October 2026 &#x1F476;</p>';
+  h+='<div class="pbar"><div class="pfill" style="width:'+pct+'%"></div></div>';
+  h+='<div class="plabel">'+pct+'% &middot; '+chk+'/'+tot+' items</div></div>';
+  h+='<div class="budgets">';
+  h+='<div class="bc"><div class="be">&#x1F4CB;</div><div class="bv">'+fm(est)+'</div><div class="bl">Estimated</div></div>';
+  h+='<div class="bc"><div class="be">&#x1F4B3;</div><div class="bv">'+fm(act)+'</div><div class="bl">Spent</div></div>';
+  h+='<div class="bc"><div class="be">&#x1F3AF;</div><div class="bv">'+(est?fm(Math.max(0,est-act)):"—")+'</div><div class="bl">Left</div></div>';
+  h+='<div class="bc"><div class="be">&#x2705;</div><div class="bv">'+chk+'/'+tot+'</div><div class="bl">Bought</div></div>';
+  h+='</div>';
+  h+='<div class="sharebar"><p>&#x1F48C; Share with Anna</p><button class="sharebtn" id="sharebtn">Copy link</button></div>';
+  h+='<div class="sharemsg" id="sharemsg">&#x2705; Copied!</div>';
 
-  var h = "";
-
-  // Hero
-  h += '<div class="hero">';
-  h += '<div class="hero-sub">Feldman Family</div>';
-  h += '<h1>Nursery Prep</h1>';
-  h += '<p>Baby boy &bull; October 2026 &#x1F476;</p>';
-  h += '<div class="pbar"><div class="pfill" style="width:'+pct+'%"></div></div>';
-  h += '<div class="plabel">'+pct+'% &middot; '+chk+'/'+tot+' items</div>';
-  h += '</div>';
-
-  // Budget
-  h += '<div class="budgets">';
-  h += '<div class="bc"><div class="be">&#x1F4CB;</div><div class="bv">'+fm(est)+'</div><div class="bl">Estimated</div></div>';
-  h += '<div class="bc"><div class="be">&#x1F4B3;</div><div class="bv">'+fm(act)+'</div><div class="bl">Spent</div></div>';
-  h += '<div class="bc"><div class="be">&#x1F3AF;</div><div class="bv">'+(est?fm(Math.max(0,est-act)):"—")+'</div><div class="bl">Remaining</div></div>';
-  h += '<div class="bc"><div class="be">&#x2705;</div><div class="bv">'+chk+'/'+tot+'</div><div class="bl">Bought</div></div>';
-  h += '</div>';
-
-  // Share
-  h += '<div class="sharebar"><p>&#x1F48C; Share with Anna</p><button class="sharebtn" id="sharebtn">Copy link</button></div>';
-  h += '<div class="sharemsg" id="sharemsg">&#x2705; Copied! Send to Anna.</div>';
-
-  // Tabs
-  h += '<div class="tabs">';
+  h+='<div class="tabs">';
   state.cats.forEach(function(c){
-    var active = c.id===activeCat;
-    h += '<div class="tab'+(active?" active":"")+'" data-tab="'+c.id+'" style="'+(active?"background:"+c.color+";border-color:"+c.color:"")+'">'+c.icon+' '+c.name+'</div>';
+    var a=c.id===activeCat;
+    h+='<div class="tab'+(a?" active":"")+'" data-tab="'+c.id+'" style="'+(a?"background:"+c.color+";border-color:"+c.color:"")+'">'+c.icon+" "+c.name+'</div>';
   });
-  h += '<div class="tab-add" id="tab-addcat">+ Category</div>';
-  h += '</div>';
+  h+='<div class="tab-add" id="tab-addcat">+ Category</div></div>';
 
-  // Section header
-  h += '<div class="sec-hdr"><div class="sec-title">'+cat.icon+' '+cat.name+'</div><div class="sec-count">'+catChk+'/'+items.length+' bought</div></div>';
+  h+='<div class="sec-hdr"><div class="sec-title">'+cat.icon+" "+cat.name+'</div><div class="sec-hint">Tap = open link &bull; ✏️ = edit &bull; ✓ = bought</div></div>';
 
-  // Grid
-  h += '<div class="grid">';
+  h+='<div class="grid">';
   items.forEach(function(item){
-    h += '<div class="card'+(item.checked?" bought":"")+'" data-edit="'+activeCat+'|'+item.id+'">';
-    if (item.img) {
-      h += '<img class="card-img" src="'+esc(item.img)+'" onerror="this.style.display=\'none\'" alt=""/>';
-      h += '<div class="card-emoji" style="position:absolute;inset:0;display:none">'+cat.icon+'</div>';
-    } else {
-      h += '<div class="card-emoji">'+cat.icon+'</div>';
+    h+='<div class="card'+(item.checked?" bought":"")+'" data-open="'+esc(item.link||"")+'" data-id="'+item.id+'">';
+    if(item.img){
+      h+='<img class="card-img" src="'+esc(item.img)+'" onerror="this.style.display=\'none\'" alt=""/>';
+      h+='<div class="card-emoji" style="display:none">'+cat.icon+'</div>';
+    }else{
+      h+='<div class="card-emoji">'+cat.icon+'</div>';
     }
-    h += '<div class="card-overlay"></div>';
-    if (item.link) {
-      h += '<a class="card-link" href="'+esc(item.link)+'" target="_blank" data-ext="1">&#x1F517;</a>';
-    }
-    h += '<div class="card-check'+(item.checked?" done":"")+'" data-chk="'+activeCat+'|'+item.id+'">'+(item.checked?"&#x2713;":"")+'</div>';
-    h += '<div class="card-bottom">';
-    h += '<div class="card-name">'+esc(item.name)+'</div>';
-    if (item.est) h += '<div class="card-price">&dollar;'+(parseFloat(item.est)||0)+'</div>';
-    h += '</div></div>';
+    h+='<div class="card-overlay"></div>';
+    h+='<div class="card-edit" data-edit="'+activeCat+'|'+item.id+'">&#x270E;</div>';
+    h+='<div class="card-check'+(item.checked?" done":"")+'" data-chk="'+activeCat+'|'+item.id+'">'+(item.checked?"&#x2713;":"")+'</div>';
+    h+='<div class="card-bottom"><div class="card-name">'+esc(item.name)+'</div>';
+    if(item.est) h+='<div class="card-price">&dollar;'+(parseFloat(item.est)||0)+'</div>';
+    h+='</div></div>';
   });
+  h+='<div class="card-add" id="addcard"><div class="card-add-icon">+</div><div class="card-add-lbl">Paste a link</div></div>';
+  h+='</div>';
 
-  // Add card
-  h += '<div class="card-add" id="addcard"><div class="card-add-icon">+</div><div class="card-add-lbl">Paste a link</div></div>';
-  h += '</div>'; // grid
-
-  // ---- MODALS ----
-
-  // ADD item modal (paste link)
-  if (modal && modal.type==="add") {
-    var m = modal;
-    h += '<div class="mbg" id="mbg">';
-    h += '<div class="msheet">';
-    h += '<div class="mhandle"></div>';
-    h += '<div class="mtitle">Add an item</div>';
-    h += '<div class="msub">'+cat.icon+' '+cat.name+' &mdash; paste any product link below</div>';
-
-    h += '<div class="paste-row">';
-    h += '<input class="paste-input" id="paste-url" type="url" placeholder="Paste Amazon, Wayfair, Target link..." value="'+esc(m.url||"")+'"/>';
-    h += '<button class="btn-fetch" id="btn-fetch"'+(m.fetching?" disabled":"")+'>'+( m.fetching?"&#x23F3;":"Go")+'</button>';
-    h += '</div>';
-    h += '<div class="fetch-status" id="fetch-status">'+esc(m.status||"")+'</div>';
-
-    if (m.preview) {
-      var p = m.preview;
-      h += '<div class="preview-row">';
-      if (p.img) {
-        h += '<div class="preview-thumb"><img src="'+esc(p.img)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML=\''+cat.icon+'\'"/></div>';
-      } else {
-        h += '<div class="preview-thumb">'+cat.icon+'</div>';
-      }
-      h += '<div class="preview-info">';
-      h += '<div class="preview-name" id="preview-name-display">'+esc(p.title||"Unknown item")+'</div>';
-      h += '<div class="preview-price">'+(p.price?"$"+p.price:"No price found")+'</div>';
-      h += '</div></div>';
-      h += '<label class="flabel">Edit name (optional)</label>';
-      h += '<input class="finput" id="ei-name" type="text" value="'+esc(p.title||"")+'" placeholder="Item name"/>';
-      h += '<button class="btn-save" id="btn-addconfirm">Add to '+cat.name+' &#x2192;</button>';
-    } else {
-      h += '<div style="text-align:center;padding:20px 0;color:#94a3b8;font-size:13px">Or add manually:</div>';
-      h += '<label class="flabel">Item name</label>';
-      h += '<input class="finput" id="ei-name" type="text" placeholder="Item name"/>';
-      h += '<button class="btn-save" id="btn-addmanual">Add item</button>';
+  // ADD modal
+  if(modal&&modal.type==="add"){
+    var m=modal;
+    h+='<div class="mbg" id="mbg"><div class="msheet">';
+    h+='<div class="mhandle"></div><div class="mtitle">Add an item</div>';
+    h+='<div class="msub">'+cat.icon+" "+cat.name+' &mdash; paste any product link</div>';
+    h+='<div class="paste-row"><input class="paste-input" id="purl" type="url" placeholder="Amazon, Wayfair, Target, etc." value="'+esc(m.url||"")+'"/>';
+    h+='<button class="btn-go" id="btn-go"'+(m.fetching?" disabled":"")+'>'+( m.fetching?"⏳":"Go")+'</button></div>';
+    h+='<div class="fstatus" id="fstatus">'+esc(m.status||"")+'</div>';
+    if(m.preview){
+      var p=m.preview;
+      h+='<div class="preview-row">';
+      if(p.img) h+='<div class="preview-thumb"><img src="'+esc(p.img)+'" onerror="this.parentNode.innerHTML=\''+cat.icon+'\'"/></div>';
+      else h+='<div class="preview-thumb">'+cat.icon+'</div>';
+      h+='<div><div class="preview-name">'+esc(p.title||"Item")+'</div><div class="preview-price">'+(p.price?"$"+p.price:"")+'</div></div></div>';
     }
-    h += '</div></div>';
+    h+='<label class="flabel">'+(m.preview?"Edit name (optional)":"Item name")+'</label>';
+    h+='<input class="finput" id="ei-name" type="text" value="'+esc((m.preview&&m.preview.title)||"")+'" placeholder="Item name"/>';
+    h+='<label class="flabel">Estimated cost ($)</label>';
+    h+='<input class="finput" id="ei-est" type="number" value="'+esc((m.preview&&m.preview.price)||"")+'" placeholder="0"/>';
+    h+='<button class="btn-save" id="btn-addconfirm">Add to '+esc(cat.name)+' &#x2192;</button>';
+    h+='</div></div>';
   }
 
-  // EDIT item modal
-  if (modal && modal.type==="edit") {
-    var ei = modal.item;
-    var ec = modal.catId;
-    var ecat = getCat(ec);
-    h += '<div class="mbg" id="mbg">';
-    h += '<div class="msheet">';
-    h += '<div class="mhandle"></div>';
-    h += '<div class="mtitle">Edit item</div>';
-    h += '<div class="msub">'+ecat.icon+' '+ecat.name+'</div>';
-
-    // Preview thumb
-    if (ei.img || ei.link) {
-      h += '<div class="preview-row">';
-      h += '<div class="preview-thumb">';
-      if (ei.img) h += '<img src="'+esc(ei.img)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML=\''+ecat.icon+'\'"/>';
-      else h += ecat.icon;
-      h += '</div>';
-      h += '<div class="preview-info">';
-      h += '<div class="preview-name">'+esc(ei.name)+'</div>';
-      if (ei.link) h += '<a href="'+esc(ei.link)+'" target="_blank" style="font-size:11px;color:#7c3aed">Open product link &#x2197;</a>';
-      h += '</div></div>';
-    }
-
-    h += '<label class="flabel">Name</label>';
-    h += '<input class="finput" id="ei-name" type="text" value="'+esc(ei.name)+'" placeholder="Item name"/>';
-    h += '<label class="flabel">Product link</label>';
-    h += '<input class="finput" id="ei-link" type="url" value="'+esc(ei.link)+'" placeholder="https://..."/>';
-    h += '<label class="flabel">Image URL (for photo on card)</label>';
-    h += '<input class="finput" id="ei-img" type="url" value="'+esc(ei.img)+'" placeholder="https://...image.jpg"/>';
-    h += '<div class="frow">';
-    h += '<div><label class="flabel">Estimated ($)</label><input class="finput" id="ei-est" type="number" value="'+esc(ei.est)+'" placeholder="0"/></div>';
-    h += '<div><label class="flabel">Actual ($)</label><input class="finput" id="ei-act" type="number" value="'+esc(ei.act)+'" placeholder="0"/></div>';
-    h += '</div>';
-    h += '<label class="flabel">Notes</label>';
-    h += '<input class="finput" id="ei-notes" type="text" value="'+esc(ei.notes)+'" placeholder="Any notes..."/>';
-    h += '<div class="mactions">';
-    h += '<button class="btn-buy'+(ei.checked?" unbuy":"")+'" id="btn-toggle">'+(ei.checked?"&#x2713; Bought":"Mark as bought")+'</button>';
-    h += '<button class="btn-del" id="btn-del">&#x1F5D1;</button>';
-    h += '</div>';
-    h += '<button class="btn-save" id="btn-save">Save</button>';
-    h += '</div></div>';
+  // EDIT modal
+  if(modal&&modal.type==="edit"){
+    var ei=modal.item, ecat=gc(modal.catId);
+    h+='<div class="mbg" id="mbg"><div class="msheet">';
+    h+='<div class="mhandle"></div><div class="mtitle">Edit item</div><div class="msub">'+ecat.icon+" "+ecat.name+'</div>';
+    if(ei.img){h+='<div class="preview-row"><div class="preview-thumb"><img src="'+esc(ei.img)+'" onerror="this.parentNode.innerHTML=\''+ecat.icon+'\'"/></div>';
+      h+='<div class="preview-name">'+esc(ei.name)+'</div></div>';}
+    h+='<label class="flabel">Name</label><input class="finput" id="ei-name" type="text" value="'+esc(ei.name)+'"/>';
+    h+='<label class="flabel">Product link</label><input class="finput" id="ei-link" type="url" value="'+esc(ei.link)+'" placeholder="https://..."/>';
+    h+='<label class="flabel">Image URL (optional)</label><input class="finput" id="ei-img" type="url" value="'+esc(ei.img)+'" placeholder="https://...image.jpg"/>';
+    h+='<div class="frow"><div><label class="flabel">Estimated ($)</label><input class="finput" id="ei-est" type="number" value="'+esc(ei.est)+'"/></div>';
+    h+='<div><label class="flabel">Actual ($)</label><input class="finput" id="ei-act" type="number" value="'+esc(ei.act)+'"/></div></div>';
+    h+='<label class="flabel">Notes</label><input class="finput" id="ei-notes" type="text" value="'+esc(ei.notes)+'"/>';
+    if(ei.link) h+='<a href="'+esc(ei.link)+'" target="_blank" class="btn-openlink">Open product &#x2197;</a>';
+    h+='<div class="mactions"><button class="btn-buy'+(ei.checked?" unbuy":"")+'" id="btn-toggle">'+(ei.checked?"✓ Bought":"Mark as bought")+'</button>';
+    h+='<button class="btn-del" id="btn-del">🗑</button></div>';
+    h+='<button class="btn-save" id="btn-save">Save</button>';
+    h+='</div></div>';
   }
 
   // ADD CATEGORY modal
-  if (modal && modal.type==="addcat") {
-    h += '<div class="mbg" id="mbg">';
-    h += '<div class="msheet">';
-    h += '<div class="mhandle"></div>';
-    h += '<div class="mtitle">Add a category</div>';
-    h += '<div class="msub" style="margin-bottom:14px">Give it a name and pick an emoji</div>';
-    h += '<label class="flabel">Category name</label>';
-    h += '<input class="add-cat-input" id="cat-name" type="text" placeholder="e.g. Toys, Gear, Hospital Bag..."/>';
-    h += '<label class="flabel">Emoji icon</label>';
-    h += '<input class="add-cat-input" id="cat-icon" type="text" placeholder="e.g. 🧸" maxlength="4"/>';
-    h += '<button class="btn-addcat" id="btn-addcat">Add category</button>';
-    h += '</div></div>';
+  if(modal&&modal.type==="addcat"){
+    h+='<div class="mbg" id="mbg"><div class="msheet">';
+    h+='<div class="mhandle"></div><div class="mtitle">New category</div><div class="msub" style="margin-bottom:14px">Name it and pick an emoji</div>';
+    h+='<label class="flabel">Category name</label><input class="finput" id="cat-name" placeholder="e.g. Hospital Bag, Toys..."/>';
+    h+='<label class="flabel">Emoji</label><input class="finput" id="cat-icon" placeholder="🧸" maxlength="4" style="font-size:22px"/>';
+    h+='<button class="btn-save" id="btn-addcat">Add category</button>';
+    h+='</div></div>';
   }
 
-  root.innerHTML = h;
+  document.getElementById("root").innerHTML=h;
 
-  // --- BIND EVENTS ---
-
-  document.getElementById("sharebtn").onclick = function(){
+  // Events
+  document.getElementById("sharebtn").onclick=function(){
     navigator.clipboard.writeText(window.location.href).catch(function(){});
-    var m = document.getElementById("sharemsg");
-    m.style.display="block";
+    var m=document.getElementById("sharemsg");m.style.display="block";
     setTimeout(function(){m.style.display="none";},2500);
   };
-
   document.querySelectorAll(".tab").forEach(function(el){
-    el.onclick = function(){ activeCat = el.dataset.tab; render(); };
+    el.onclick=function(){activeCat=el.dataset.tab;render();};
   });
+  document.getElementById("tab-addcat").onclick=function(){modal={type:"addcat"};render();};
 
-  var tabAddCat = document.getElementById("tab-addcat");
-  if (tabAddCat) tabAddCat.onclick = openAddCat;
-
-  document.querySelectorAll(".card[data-edit]").forEach(function(el){
-    el.onclick = function(e){
-      if (e.target.closest("[data-ext]") || e.target.closest("[data-chk]")) return;
-      var p = el.dataset.edit.split("|");
-      openEdit(p[0], p[1]);
+  // Card tap = open link
+  document.querySelectorAll(".card[data-open]").forEach(function(el){
+    el.onclick=function(e){
+      if(e.target.closest(".card-check")||e.target.closest(".card-edit"))return;
+      var link=el.dataset.open;
+      if(link) window.open(link,"_blank");
     };
   });
 
-  document.querySelectorAll("[data-chk]").forEach(function(el){
-    el.onclick = function(e){
+  // Edit button
+  document.querySelectorAll(".card-edit").forEach(function(el){
+    el.onclick=function(e){
       e.stopPropagation();
-      var p = el.dataset.chk.split("|");
-      toggleCheck(p[0], p[1]);
+      var p=el.dataset.edit.split("|"),catId=p[0],itemId=p[1];
+      var item=(state.items[catId]||[]).find(function(i){return i.id===itemId;});
+      if(item) modal={type:"edit",catId:catId,item:JSON.parse(JSON.stringify(item))};
+      render();
     };
   });
 
-  var addcard = document.getElementById("addcard");
-  if (addcard) addcard.onclick = function(){ openAdd(activeCat); };
+  // Check button
+  document.querySelectorAll(".card-check").forEach(function(el){
+    el.onclick=function(e){
+      e.stopPropagation();
+      var p=el.dataset.chk.split("|");
+      state.items[p[0]]=(state.items[p[0]]||[]).map(function(i){
+        return i.id===p[1]?Object.assign({},i,{checked:!i.checked}):i;
+      });
+      save();render();
+    };
+  });
 
-  // Modal background close
-  var mbg = document.getElementById("mbg");
-  if (mbg) mbg.onclick = function(e){ if(e.target.id==="mbg") closeModal(); };
+  // Add card
+  var addcard=document.getElementById("addcard");
+  if(addcard) addcard.onclick=function(){modal={type:"add",catId:activeCat,url:"",status:"",preview:null,fetching:false};render();};
 
-  // ADD modal events
-  if (modal && modal.type==="add") {
-    var pasteUrl = document.getElementById("paste-url");
-    var btnFetch = document.getElementById("btn-fetch");
-    var fetchStatus = document.getElementById("fetch-status");
+  // Modal bg close
+  var mbg=document.getElementById("mbg");
+  if(mbg) mbg.onclick=function(e){if(e.target.id==="mbg"){modal=null;render();}};
 
-    if (pasteUrl) pasteUrl.focus();
-
-    if (btnFetch) btnFetch.onclick = async function(){
-      var url = document.getElementById("paste-url").value.trim();
-      if (!url) return;
-      modal.url = url;
-      modal.fetching = true;
-      modal.status = "🔍 Reading product page...";
-      modal.preview = null;
+  // ADD modal
+  if(modal&&modal.type==="add"){
+    var purl=document.getElementById("purl");
+    if(purl){purl.focus();}
+    var btnGo=document.getElementById("btn-go");
+    if(btnGo) btnGo.onclick=async function(){
+      var url=(document.getElementById("purl").value||"").trim();
+      if(!url)return;
+      modal.url=url;modal.fetching=true;modal.status="🔍 Reading page...";modal.preview=null;
       render();
-      try {
-        var result = await fetchProduct(url);
-        modal.fetching = false;
-        if (result.title || result.img) {
-          modal.preview = result;
-          modal.status = "";
-        } else {
-          modal.status = "Couldn't auto-fill — enter the name below manually.";
-        }
-      } catch(err) {
-        modal.fetching = false;
-        modal.status = "Couldn't read that page — enter the name manually below.";
+      try{
+        var res=await fetchProduct(url);
+        modal.fetching=false;
+        if(res.title||res.img){modal.preview=res;modal.status="";}
+        else{modal.status="Couldn't auto-fill — type the name below.";}
+      }catch(err){
+        modal.fetching=false;modal.status="Couldn't read that page — enter name manually.";
       }
       render();
     };
-
-    if (pasteUrl) pasteUrl.onkeydown = function(e){
-      if (e.key==="Enter" && btnFetch) btnFetch.click();
-    };
-
-    var btnAddConfirm = document.getElementById("btn-addconfirm");
-    if (btnAddConfirm) btnAddConfirm.onclick = function(){
-      var name = document.getElementById("ei-name").value.trim() || (modal.preview && modal.preview.title) || "New item";
-      var prev = modal.preview || {};
-      if (name) prev.title = name;
-      addItemFromPreview(modal.catId, prev, modal.url);
-    };
-
-    var btnAddManual = document.getElementById("btn-addmanual");
-    if (btnAddManual) btnAddManual.onclick = function(){
-      var name = document.getElementById("ei-name").value.trim();
-      if (!name) return;
-      addItemFromPreview(modal.catId, {title:name, img:"", price:""}, modal.url||"");
+    if(purl) purl.onkeydown=function(e){if(e.key==="Enter"&&btnGo)btnGo.click();};
+    var btnAddConfirm=document.getElementById("btn-addconfirm");
+    if(btnAddConfirm) btnAddConfirm.onclick=function(){
+      var name=(document.getElementById("ei-name").value||"").trim()||(modal.preview&&modal.preview.title)||"New item";
+      var est=document.getElementById("ei-est").value||"";
+      var prev=modal.preview||{};
+      var item={id:uid(),name:name,checked:false,notes:"",link:modal.url||"",img:prev.img||"",est:est,act:""};
+      if(!state.items[modal.catId])state.items[modal.catId]=[];
+      state.items[modal.catId].push(item);
+      save();modal=null;render();
     };
   }
 
-  // EDIT modal events
-  if (modal && modal.type==="edit") {
-    var btnSave = document.getElementById("btn-save");
-    if (btnSave) btnSave.onclick = function(){
-      modal.item.name  = document.getElementById("ei-name").value || modal.item.name;
-      modal.item.link  = document.getElementById("ei-link").value;
-      modal.item.img   = document.getElementById("ei-img").value;
-      modal.item.est   = document.getElementById("ei-est").value;
-      modal.item.act   = document.getElementById("ei-act").value;
-      modal.item.notes = document.getElementById("ei-notes").value;
-      saveEdit();
+  // EDIT modal
+  if(modal&&modal.type==="edit"){
+    var btnSave=document.getElementById("btn-save");
+    if(btnSave) btnSave.onclick=function(){
+      modal.item.name=document.getElementById("ei-name").value||modal.item.name;
+      modal.item.link=document.getElementById("ei-link").value;
+      modal.item.img=document.getElementById("ei-img").value;
+      modal.item.est=document.getElementById("ei-est").value;
+      modal.item.act=document.getElementById("ei-act").value;
+      modal.item.notes=document.getElementById("ei-notes").value;
+      state.items[modal.catId]=(state.items[modal.catId]||[]).map(function(i){
+        return i.id===modal.item.id?modal.item:i;
+      });
+      save();modal=null;render();
     };
-    var btnToggle = document.getElementById("btn-toggle");
-    if (btnToggle) btnToggle.onclick = function(){
-      modal.item.checked = !modal.item.checked;
-      btnToggle.className = "btn-buy"+(modal.item.checked?" unbuy":"");
-      btnToggle.innerHTML = modal.item.checked ? "&#x2713; Bought" : "Mark as bought";
+    var btnToggle=document.getElementById("btn-toggle");
+    if(btnToggle) btnToggle.onclick=function(){
+      modal.item.checked=!modal.item.checked;
+      btnToggle.className="btn-buy"+(modal.item.checked?" unbuy":"");
+      btnToggle.textContent=modal.item.checked?"✓ Bought":"Mark as bought";
     };
-    var btnDel = document.getElementById("btn-del");
-    if (btnDel) btnDel.onclick = function(){
-      if (confirm("Remove this item?")) deleteItem(modal.catId, modal.item.id);
+    var btnDel=document.getElementById("btn-del");
+    if(btnDel) btnDel.onclick=function(){
+      if(!confirm("Remove this item?"))return;
+      state.items[modal.catId]=(state.items[modal.catId]||[]).filter(function(i){return i.id!==modal.item.id;});
+      save();modal=null;render();
     };
   }
 
-  // ADD CATEGORY modal events
-  if (modal && modal.type==="addcat") {
-    var catNameEl = document.getElementById("cat-name");
-    if (catNameEl) catNameEl.focus();
-    var btnAddCat = document.getElementById("btn-addcat");
-    if (btnAddCat) btnAddCat.onclick = function(){
-      var name = document.getElementById("cat-name").value;
-      var icon = document.getElementById("cat-icon").value || "📦";
-      addCategory(name, icon);
-    };
-    if (catNameEl) catNameEl.onkeydown = function(e){
-      if (e.key==="Enter" && btnAddCat) btnAddCat.click();
+  // ADD CAT modal
+  if(modal&&modal.type==="addcat"){
+    var catName=document.getElementById("cat-name");
+    if(catName) catName.focus();
+    var btnAC=document.getElementById("btn-addcat");
+    if(btnAC) btnAC.onclick=function(){
+      var n=(document.getElementById("cat-name").value||"").trim();
+      var ic=document.getElementById("cat-icon").value||"📦";
+      if(!n)return;
+      var id=uid();
+      state.cats.push({id:id,name:n,icon:ic,color:"#7C3AED"});
+      state.items[id]=[];
+      activeCat=id;save();modal=null;render();
     };
   }
 }
